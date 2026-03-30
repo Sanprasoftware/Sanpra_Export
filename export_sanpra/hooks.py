@@ -44,6 +44,11 @@ app_license = "mit"
 
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {
+	"Quotation": "public/js/quotation_export_quotation_s.js", 
+	"Sales Order": "public/js/sales_order_export_sales_order_s.js",
+	"Sales Invoice": "public/js/sales_invoice_export_sales_invoice_s.js",
+}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -144,6 +149,17 @@ app_license = "mit"
 # 		"on_trash": "method"
 # 	}
 # }
+doc_events = {
+    "Quotation": {
+        "before_save": "export_sanpra.public.py.quotation_export_quotation_s.create_export_quotation_s"
+    },
+    "Sales Order": {
+        "before_save": "export_sanpra.public.py.export_sales_order_s.export_sales_order_s"
+    },
+    "Sales Invoice": {
+        "before_save": "export_sanpra.public.py.export_sales_invoice_s.export_sales_invoice_s"
+    }
+}
 
 # Scheduled Tasks
 # ---------------
@@ -241,4 +257,3 @@ app_license = "mit"
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
-

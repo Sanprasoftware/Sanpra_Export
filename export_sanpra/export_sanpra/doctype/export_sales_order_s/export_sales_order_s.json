@@ -1,0 +1,711 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:sales_order_id",
+ "creation": "2026-02-13 12:21:35.209842",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "details_section",
+  "sales_order_id",
+  "orgin",
+  "type_of_stuffing",
+  "agent_name",
+  "column_break_swpz",
+  "discharge_country", 
+  "discharge_port",
+  "loading_port",
+  "section_break_ypoj",
+  "contracted_qty",
+  "no_of_fcl",
+  "stuffing_qty_fcl",
+  "no_of_docs",
+  "no_of_s_b",
+  "silica_gel__kg_rate",
+  "silica_gel_kg__fcl",
+  "column_break_khzn",
+  "craft_paper__kg_rate",
+  "craft_paper_kg_fcl",
+  "fumigation",
+  "local_transp_dpds_rupees__mt",
+  "ocean_frieght_fcl_doller",
+  "ocean_frieght_fcl_calcu",
+  "thc_fcl_rupees",
+  "bl_cost_docs_rupees",
+  "column_break_gboe",
+  "cif_insurance",
+  "ecgc_rate",
+  "additional_document",
+  "buyer_standard_document",
+  "section_break_pbdp",
+  "refresh",
+  "selling_offer_rate_mt",
+  "column_break_wptt",
+  "sales_commission_mt",
+  "cargo_pur_rate",
+  "column_break_kqkj",
+  "margin",
+  "cost_of_export",
+  "column_break_vspo",
+  "selling_rate",
+  "net_margin",
+  "comparative_statement_section",
+  "fob_cost",
+  "cnf_ocean_freight",
+  "cif_insurance_cost",
+  "cargo_pur_amt",
+  "local_transp_dpds_fob",
+  "cha_clearing_cost_fob",
+  "surveyor_cost_fob",
+  "additional_certificate_fob",
+  "purc_brokaerage_fob",
+  "ecgc_fob",
+  "bank_charges_fob",
+  "administrative_cost_fob",
+  "wc_interest",
+  "cargo_shortage_cost",
+  "silica_gel",
+  "craft_paper",
+  "fumigation_cost",
+  "other_cost",
+  "bank_charge",
+  "thc_cost",
+  "intrest_rate",
+  "linear_currency",
+  "cin_insurance_calculation",
+  "export_expense_total",
+  "transit_days",
+  "column_break_pgtd",
+  "fob_cost_mt_rs__mt",
+  "cin_ocean_freight_rs__mt",
+  "cif_insurance_cost_rs__mt",
+  "cargo_purc_amt_rupees__mt",
+  "local_transp_dpds_rs__mt",
+  "cha_clearing_cost_rs__mt",
+  "surveyor_cost_rs__mt",
+  "additional_certificate_rs__mt",
+  "purc_brokaerage_rs__mt",
+  "ecgc_rs__mt",
+  "bank_charges_rs__mt",
+  "administrative_cost_rs__mt",
+  "wc_interest_rs__mt",
+  "cargo_shortage_rs__mt",
+  "silica_gel_rs__mt",
+  "craft_paper_rs__mt",
+  "fumigation_rs__mt",
+  "other_cost_rs__mt",
+  "thc_cost_rs__mt",
+  "export_expense_rs__mt",
+  "column_break_zzyf",
+  "fob_cost_mt_doller",
+  "cnf_ocean_freight_doller",
+  "cif_insurance_cost_doller",
+  "cargo_purc_amt_dollar___mt",
+  "local_transp_dpds_doller__mt",
+  "cha_clearing_cost_doller__mt",
+  "surveyor_cost_doller__mt",
+  "additional_certificate_doller__mt",
+  "purc_brokaerage_doller__mt",
+  "ecgc_doller__mt",
+  "bank_charges_doller__mt",
+  "administrative_cost_doller__mt",
+  "wc_interest_doller__mt",
+  "cargo_shortage_doller__mt",
+  "silica_gel_doller__mt",
+  "craft_paper_doller__mt",
+  "fumigation_doller__mt",
+  "other_cost_doller__mt",
+  "thc_cost_doller__mt",
+  "export_expense_doller"
+ ],
+ "fields": [
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "default": "India",
+   "fieldname": "orgin",
+   "fieldtype": "Link",
+   "label": "Orgin",
+   "options": "Territory"
+  },
+  {
+   "fieldname": "type_of_stuffing",
+   "fieldtype": "Link",
+   "label": "Type Of Stuffing",
+   "options": "FOB Costing s"
+  },
+  {
+   "fieldname": "agent_name",
+   "fieldtype": "Link",
+   "label": "Agent Name",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "column_break_swpz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "discharge_country",
+   "fieldtype": "Link",
+   "label": "Discharge Country",
+   "options": "Country"
+  },
+  {
+   "fieldname": "discharge_port",
+   "fieldtype": "Link",
+   "label": "Discharge Port",
+   "options": "Discharge Port s"
+  },
+  {
+   "fieldname": "loading_port",
+   "fieldtype": "Link",
+   "label": "Loading Port",
+   "options": "Loading Port s"
+  },
+  {
+   "fieldname": "section_break_ypoj",
+   "fieldtype": "Section Break",
+   "label": "Calculation"
+  },
+  {
+   "fieldname": "contracted_qty",
+   "fieldtype": "Data",
+   "label": "Contracted Qty"
+  },
+  {
+   "fieldname": "no_of_fcl",
+   "fieldtype": "Data",
+   "label": "No of FCL"
+  },
+  {
+   "fieldname": "stuffing_qty_fcl",
+   "fieldtype": "Data",
+   "label": "Stuffing Qty FCl"
+  },
+  {
+   "fieldname": "no_of_docs",
+   "fieldtype": "Data",
+   "label": "No of Docs"
+  },
+  {
+   "fieldname": "no_of_s_b",
+   "fieldtype": "Data",
+   "label": "No of S B"
+  },
+  {
+   "fetch_from": "type_of_stuffing.silica_gel_rate__kg",
+   "fieldname": "silica_gel__kg_rate",
+   "fieldtype": "Data",
+   "label": "Silica Gel / Kg Rate"
+  },
+  {
+   "fieldname": "silica_gel_kg__fcl",
+   "fieldtype": "Data",
+   "label": "Silica Gel Kg  FCL"
+  },
+  {
+   "fieldname": "column_break_khzn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "type_of_stuffing.craft_paper__rate_kg",
+   "fieldname": "craft_paper__kg_rate",
+   "fieldtype": "Float",
+   "label": "Craft Paper / Kg rate"
+  },
+  {
+   "fieldname": "craft_paper_kg_fcl",
+   "fieldtype": "Data",
+   "label": "Craft Paper KG FCL"
+  },
+  {
+   "fieldname": "fumigation",
+   "fieldtype": "Link",
+   "label": "Fumigation",
+   "options": "Fumigation s"
+  },
+  {
+   "fieldname": "local_transp_dpds_rupees__mt",
+   "fieldtype": "Data",
+   "label": "Local TransP DPDS Rupees / MT"
+  },
+  {
+   "fieldname": "ocean_frieght_fcl_doller",
+   "fieldtype": "Data",
+   "label": "Ocean Frieght FCL $ (Doller)"
+  },
+  {
+   "fieldname": "ocean_frieght_fcl_calcu",
+   "fieldtype": "Float",
+   "label": "Ocean Frieght FCL Calcu"
+  },
+  {
+   "fieldname": "thc_fcl_rupees",
+   "fieldtype": "Data",
+   "label": "THC FCL (Rupees)"
+  },
+  {
+   "fieldname": "bl_cost_docs_rupees",
+   "fieldtype": "Data",
+   "label": "BL Cost Docs (Rupees)"
+  },
+  {
+   "fieldname": "column_break_gboe",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "cif_insurance",
+   "fieldtype": "Data",
+   "label": "CIF Insurance"
+  },
+  {
+   "fieldname": "ecgc_rate",
+   "fieldtype": "Data",
+   "label": "ECGC Rate"
+  },
+  {
+   "fieldname": "additional_document",
+   "fieldtype": "Link",
+   "label": "Additional Document",
+   "options": "Additional Certificate s"
+  },
+  {
+   "fieldname": "buyer_standard_document",
+   "fieldtype": "Link",
+   "label": "Buyer Standard Document",
+   "options": "Buyer Documents s"
+  },
+  {
+   "fieldname": "section_break_pbdp",
+   "fieldtype": "Section Break",
+   "label": "Comparative Statement"
+  },
+  {
+   "fieldname": "refresh",
+   "fieldtype": "Float",
+   "label": "Refresh"
+  },
+  {
+   "fieldname": "selling_offer_rate_mt",
+   "fieldtype": "Float",
+   "label": "Selling Offer Rate $/MT"
+  },
+  {
+   "fieldname": "column_break_wptt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "sales_commission_mt",
+   "fieldtype": "Float",
+   "label": "Sales Commission $ / MT"
+  },
+  {
+   "fieldname": "cargo_pur_rate",
+   "fieldtype": "Float",
+   "label": "Export Duty $ / MT"
+  },
+  {
+   "fieldname": "column_break_kqkj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "margin",
+   "fieldtype": "Float",
+   "label": "Margin %"
+  },
+  {
+   "fieldname": "cost_of_export",
+   "fieldtype": "Float",
+   "label": "COST OF EXPORT $ / MT"
+  },
+  {
+   "fieldname": "column_break_vspo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "selling_rate",
+   "fieldtype": "Float",
+   "label": "Selling Rate (Before Duty)$ / MT"
+  },
+  {
+   "fieldname": "net_margin",
+   "fieldtype": "Float",
+   "label": "Net Margin $ / MT"
+  },
+  {
+   "fieldname": "comparative_statement_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "fob_cost",
+   "fieldtype": "Currency",
+   "label": "FOB Cost ",
+   "precision": "2"
+  },
+  {
+   "fieldname": "cnf_ocean_freight",
+   "fieldtype": "Currency",
+   "label": "CNF Ocean Freight "
+  },
+  {
+   "fieldname": "cif_insurance_cost",
+   "fieldtype": "Currency",
+   "label": "CIF Insurance Cost "
+  },
+  {
+   "fieldname": "cargo_pur_amt",
+   "fieldtype": "Data",
+   "label": "Cargo Pur Amt"
+  },
+  {
+   "fieldname": "local_transp_dpds_fob",
+   "fieldtype": "Currency",
+   "label": "Local TransP DPDS FOB"
+  },
+  {
+   "fieldname": "cha_clearing_cost_fob",
+   "fieldtype": "Currency",
+   "label": "CHA Clearing cost FOB"
+  },
+  {
+   "fieldname": "surveyor_cost_fob",
+   "fieldtype": "Currency",
+   "label": "Surveyor Cost FOB"
+  },
+  {
+   "fetch_from": "additional_document.total_amt",
+   "fieldname": "additional_certificate_fob",
+   "fieldtype": "Currency",
+   "label": "Additional Certificate FOB"
+  },
+  {
+   "fieldname": "purc_brokaerage_fob",
+   "fieldtype": "Currency",
+   "label": "Purc Brokaerage FOB"
+  },
+  {
+   "fieldname": "ecgc_fob",
+   "fieldtype": "Currency",
+   "label": "ECGC FOB"
+  },
+  {
+   "fieldname": "bank_charges_fob",
+   "fieldtype": "Currency",
+   "label": "Bank Charges FOB"
+  },
+  {
+   "fieldname": "administrative_cost_fob",
+   "fieldtype": "Currency",
+   "label": "Administrative Cost FOB"
+  },
+  {
+   "fieldname": "wc_interest",
+   "fieldtype": "Currency",
+   "label": "WC Interest "
+  },
+  {
+   "fieldname": "cargo_shortage_cost",
+   "fieldtype": "Currency",
+   "label": "Cargo Shortage Cost"
+  },
+  {
+   "fieldname": "silica_gel",
+   "fieldtype": "Currency",
+   "label": "Silica Gel"
+  },
+  {
+   "fieldname": "craft_paper",
+   "fieldtype": "Currency",
+   "label": "Craft Paper"
+  },
+  {
+   "fieldname": "fumigation_cost",
+   "fieldtype": "Currency",
+   "label": "Fumigation Cost"
+  },
+  {
+   "fieldname": "other_cost",
+   "fieldtype": "Currency",
+   "label": "Other Cost"
+  },
+  {
+   "fieldname": "bank_charge",
+   "fieldtype": "Currency",
+   "label": "Bank Charge"
+  },
+  {
+   "fieldname": "thc_cost",
+   "fieldtype": "Currency",
+   "label": "THC Cost"
+  },
+  {
+   "fieldname": "intrest_rate",
+   "fieldtype": "Currency",
+   "label": "Intrest Rate"
+  },
+  {
+   "fieldname": "linear_currency",
+   "fieldtype": "Float",
+   "label": "Linear Currency"
+  },
+  {
+   "fieldname": "cin_insurance_calculation",
+   "fieldtype": "Data",
+   "label": "CIN Insurance Calculation"
+  },
+  {
+   "fieldname": "export_expense_total",
+   "fieldtype": "Float",
+   "label": "Export Expense Total"
+  },
+  {
+   "fieldname": "transit_days",
+   "fieldtype": "Currency",
+   "label": "Transit Days"
+  },
+  {
+   "fieldname": "column_break_pgtd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "fob_cost_mt_rs__mt",
+   "fieldtype": "Currency",
+   "label": "FOB Cost MT Rs / MT"
+  },
+  {
+   "fieldname": "cin_ocean_freight_rs__mt",
+   "fieldtype": "Currency",
+   "label": "CIN Ocean Freight Rs / MT"
+  },
+  {
+   "fieldname": "cif_insurance_cost_rs__mt",
+   "fieldtype": "Currency",
+   "label": "CIF Insurance Cost Rs / MT"
+  },
+  {
+   "fieldname": "cargo_purc_amt_rupees__mt",
+   "fieldtype": "Currency",
+   "label": "Cargo Purc Amt rupees / MT"
+  },
+  {
+   "fieldname": "local_transp_dpds_rs__mt",
+   "fieldtype": "Currency",
+   "label": "Local TransP DPDS Rs / MT"
+  },
+  {
+   "fieldname": "cha_clearing_cost_rs__mt",
+   "fieldtype": "Currency",
+   "label": "CHA Clearing cost Rs / MT"
+  },
+  {
+   "fieldname": "surveyor_cost_rs__mt",
+   "fieldtype": "Currency",
+   "label": "Surveyor Cost Rs / MT"
+  },
+  {
+   "fieldname": "additional_certificate_rs__mt",
+   "fieldtype": "Currency",
+   "label": "Additional Certificate Rs / MT"
+  },
+  {
+   "fieldname": "purc_brokaerage_rs__mt",
+   "fieldtype": "Currency",
+   "label": "Purc Brokaerage Rs / MT"
+  },
+  {
+   "fieldname": "ecgc_rs__mt",
+   "fieldtype": "Currency",
+   "label": "ECGC Rs / MT"
+  },
+  {
+   "fieldname": "bank_charges_rs__mt",
+   "fieldtype": "Currency",
+   "label": "Bank Charges Rs / MT"
+  },
+  {
+   "fieldname": "administrative_cost_rs__mt",
+   "fieldtype": "Currency",
+   "label": "Administrative Cost Rs / MT"
+  },
+  {
+   "fieldname": "wc_interest_rs__mt",
+   "fieldtype": "Currency",
+   "label": "WC Interest Rs / MT"
+  },
+  {
+   "fieldname": "cargo_shortage_rs__mt",
+   "fieldtype": "Currency",
+   "label": "Cargo Shortage Rs / MT"
+  },
+  {
+   "fieldname": "silica_gel_rs__mt",
+   "fieldtype": "Currency",
+   "label": "Silica Gel Rs / MT"
+  },
+  {
+   "fieldname": "craft_paper_rs__mt",
+   "fieldtype": "Currency",
+   "label": "Craft Paper Rs / MT"
+  },
+  {
+   "fieldname": "fumigation_rs__mt",
+   "fieldtype": "Currency",
+   "label": "Fumigation Rs / MT"
+  },
+  {
+   "fieldname": "other_cost_rs__mt",
+   "fieldtype": "Currency",
+   "label": "Other Cost Rs / MT"
+  },
+  {
+   "fieldname": "thc_cost_rs__mt",
+   "fieldtype": "Currency",
+   "label": "THC Cost Rs / MT"
+  },
+  {
+   "fieldname": "export_expense_rs__mt",
+   "fieldtype": "Currency",
+   "label": "Export Expense Rs / MT"
+  },
+  {
+   "fieldname": "column_break_zzyf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "fob_cost_mt_doller",
+   "fieldtype": "Float",
+   "label": " FOB Cost MT Doller"
+  },
+  {
+   "fieldname": "cnf_ocean_freight_doller",
+   "fieldtype": "Float",
+   "label": "CNF Ocean Freight Doller"
+  },
+  {
+   "fieldname": "cif_insurance_cost_doller",
+   "fieldtype": "Float",
+   "label": "CIF Insurance Cost Doller"
+  },
+  {
+   "fieldname": "cargo_purc_amt_dollar___mt",
+   "fieldtype": "Float",
+   "label": "Cargo Purc Amt Dollar  / MT"
+  },
+  {
+   "fieldname": "local_transp_dpds_doller__mt",
+   "fieldtype": "Float",
+   "label": "Local TransP DPDS Doller / MT"
+  },
+  {
+   "fieldname": "cha_clearing_cost_doller__mt",
+   "fieldtype": "Float",
+   "label": "CHA Clearing cost Doller / MT"
+  },
+  {
+   "fieldname": "surveyor_cost_doller__mt",
+   "fieldtype": "Float",
+   "label": "Surveyor Cost Doller / MT"
+  },
+  {
+   "fieldname": "additional_certificate_doller__mt",
+   "fieldtype": "Float",
+   "label": "Additional Certificate Doller / MT"
+  },
+  {
+   "fieldname": "purc_brokaerage_doller__mt",
+   "fieldtype": "Float",
+   "label": "Purc Brokaerage Doller / MT"
+  },
+  {
+   "fieldname": "ecgc_doller__mt",
+   "fieldtype": "Float",
+   "label": "ECGC Doller / MT"
+  },
+  {
+   "fieldname": "bank_charges_doller__mt",
+   "fieldtype": "Float",
+   "label": "Bank Charges Doller / MT"
+  },
+  {
+   "fieldname": "administrative_cost_doller__mt",
+   "fieldtype": "Float",
+   "label": "Administrative Cost Doller / MT"
+  },
+  {
+   "fieldname": "wc_interest_doller__mt",
+   "fieldtype": "Float",
+   "label": "WC Interest Doller / MT"
+  },
+  {
+   "fieldname": "cargo_shortage_doller__mt",
+   "fieldtype": "Float",
+   "label": "Cargo Shortage Doller / MT"
+  },
+  {
+   "fieldname": "silica_gel_doller__mt",
+   "fieldtype": "Float",
+   "label": "Silica Gel Doller / MT"
+  },
+  {
+   "fieldname": "craft_paper_doller__mt",
+   "fieldtype": "Float",
+   "label": "Craft Paper Doller / MT"
+  },
+  {
+   "fieldname": "fumigation_doller__mt",
+   "fieldtype": "Float",
+   "label": "Fumigation Doller / MT"
+  },
+  {
+   "fieldname": "other_cost_doller__mt",
+   "fieldtype": "Float",
+   "label": "Other Cost Doller / MT"
+  },
+  {
+   "fieldname": "thc_cost_doller__mt",
+   "fieldtype": "Float",
+   "label": "THC Cost Doller / MT"
+  },
+  {
+   "fieldname": "export_expense_doller",
+   "fieldtype": "Float",
+   "label": "Export Expense Doller"
+  },
+  {
+   "fieldname": "sales_order_id",
+   "fieldtype": "Data",
+   "label": "Sales Order Id",
+   "unique": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-12 17:15:24.260175",
+ "modified_by": "Administrator",
+ "module": "Export Sanpra",
+ "name": "Export Sales Order s",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

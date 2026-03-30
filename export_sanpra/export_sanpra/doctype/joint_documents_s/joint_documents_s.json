@@ -1,0 +1,41 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-02-12 11:20:47.718498",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "doc_name",
+  "rate"
+ ],
+ "fields": [
+  {
+   "fieldname": "doc_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Doc Name",
+   "options": "Document Item s"
+  },
+  {
+   "fieldname": "rate",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Rate"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-02-12 11:22:43.715422",
+ "modified_by": "Administrator",
+ "module": "Export Sanpra",
+ "name": "Joint Documents s",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,66 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "field:stuffing",
+ "creation": "2026-02-27 11:26:05.693925",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "stuffing",
+  "packing_mode",
+  "shortage_",
+  "type_of_fcl"
+ ],
+ "fields": [
+  {
+   "fieldname": "stuffing",
+   "fieldtype": "Data",
+   "label": "Stuffing",
+   "unique": 1
+  },
+  {
+   "fieldname": "packing_mode",
+   "fieldtype": "Data",
+   "label": "Packing Mode"
+  },
+  {
+   "fieldname": "shortage_",
+   "fieldtype": "Data",
+   "label": "Shortage %"
+  },
+  {
+   "fieldname": "type_of_fcl",
+   "fieldtype": "Link",
+   "label": "Type of FCL",
+   "options": "FOB Costing s"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-04 17:42:47.909596",
+ "modified_by": "Administrator",
+ "module": "Export Sanpra",
+ "name": "Stuffing",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
