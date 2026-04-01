@@ -16,7 +16,7 @@ def create_export_quotation_s(doc, method=None):
         return
 
     # Check if already exists 
-    export_doc_name = frappe.db.get_value(
+    export_doc_name = frappe.db.get_value( 
         "Export Quotation s",
         {"quotation_id": doc.name}
     )
