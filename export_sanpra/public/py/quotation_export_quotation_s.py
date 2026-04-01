@@ -1,16 +1,40 @@
 import frappe
 
-@frappe.whitelist()
+# @frappe.whitelist() 
+# def create_export_quotation_s(doc, method=None):
+#     if doc.custom_quotation_type_ != "Global":
+#         return
+
+#     if frappe.db.exists("Export Quotation s", {"quotation_id": doc.name}):
+#         return
+
+#     new_doc = frappe.new_doc("Export Quotation s")
+#     new_doc.quotation_id = doc.name 
+#     new_doc.save()
 def create_export_quotation_s(doc, method=None):
     if doc.custom_quotation_type_ != "Global":
         return
 
-    if frappe.db.exists("Export Quotation s", {"quotation_id": doc.name}):
-        return
+    # Check if already exists 
+    export_doc_name = frappe.db.get_value(
+        "Export Quotation s",
+        {"quotation_id": doc.name}
+    )
 
-    new_doc = frappe.new_doc("Export Quotation s")
-    new_doc.quotation_id = doc.name 
-    new_doc.save()
+    # If exists → get it
+    if export_doc_name:
+        export_doc = frappe.get_doc("Export Quotation s", export_doc_name)
+    else:
+        # Create new
+        export_doc = frappe.new_doc("Export Quotation s")
+        export_doc.quotation_id = doc.name
+        export_doc.insert(ignore_permissions=True)
+
+    # Call calculations
+    export_doc.all_calculations()
+
+    # Save changes
+    export_doc.save(ignore_permissions=True)
 
 
 @frappe.whitelist()
@@ -54,3 +78,26 @@ def calculate_custom_export_duty_single_item(custom_export_duty=None, custom_tot
     if not custom_total_amount_before_duty:
         return 0
     return (custom_export_duty / custom_total_amount_before_duty) * 100
+
+
+
+## Call Export Quotation s Class all_calculations() Method 
+# @frappe.whitelist()
+# def create_and_calculate(doc, method=None):
+#     if doc.custom_quotation_type_ != "Global":
+#         return
+
+#     export_doc_name = frappe.db.get_value(
+#         "Export Quotation s",
+#         {"quotation_id": doc.name}
+#     )
+
+#     if export_doc_name:
+#         export_doc = frappe.get_doc("Export Quotation s", export_doc_name)
+#     else:
+#         export_doc = frappe.new_doc("Export Quotation s")
+#         export_doc.quotation_id = doc.name
+#         export_doc.insert(ignore_permissions=True)
+
+#     export_doc.all_calculations()
+#     export_doc.save(ignore_permissions=True)

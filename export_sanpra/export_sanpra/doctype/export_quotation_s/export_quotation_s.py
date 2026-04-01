@@ -12,7 +12,7 @@ class ExportQuotations(Document):
 		self.all_calculations()
 
 	def all_calculations(self):
-
+		
 		quotation_values = frappe.db.get_value(
 			"Quotation", 
 			{"name": self.quotation_id},
@@ -21,7 +21,7 @@ class ExportQuotations(Document):
 		) or {}
 
 		
-
+ 
 
 		self.contracted_qty = quotation_values.get("total_qty")
 		# self.contracted_qty = quotation_values.total_qty
@@ -54,7 +54,7 @@ class ExportQuotations(Document):
 			quotation_items = frappe.get_all(
 				"Quotation Item",
 				filters={"parent": self.quotation_id, "parenttype": "Quotation"},
-				fields=["custom_sales_comm_usd__mt", "rate", "custom_purc_brokaerage_amt", "custom__cargo_shortage_inr__mt", "custom_item_rate"],
+				fields=["item_code", "custom_sales_comm_usd__mt", "rate", "custom_purc_brokaerage_amt", "custom__cargo_shortage_inr__mt", "custom_item_rate"],
 			)
 
 			
@@ -132,7 +132,7 @@ class ExportQuotations(Document):
 		self.ecgc_fob = flt(total_inr) * custom_ecgc_rate_ / 100 if total_inr else 0
 
 		total_bank_charges = 0
-		quotation_doc = frappe.get_doc("Quotation", self.name)
+		quotation_doc = frappe.get_doc("Quotation", self.quotation_id)
 
 		if quotation_doc.payment_schedule:
 			for row in quotation_doc.payment_schedule:
@@ -175,12 +175,12 @@ class ExportQuotations(Document):
 		item_count = len(quotation_items)
 		avg_rate = total_item_rate / item_count if item_count else 0
 
-		self.cif_insurance_cost = (flt(total_inr) * flt(self.cif_insurance) / 100) if total_inr else 0
+		self.cif_insurance_cost = (flt(total_inr) * flt(self.cif_insurances) / 100) if total_inr else 0
 		# 330*480*89*
 		# if contracted_qty > 0:
 		# 	# self.cif_insurance_cost = flt(avg_rate) * contracted_qty * conversion_rate * (flt(self.cif_insurance) / 100)
 		# else:
-		# 	self.cif_insurance_cost = 0
+		# 	self.cif_insurance_cost = 0 
 
 		# self.cargo_pur_amt = flt(self.cargo_purc_amt_rupees__mt) * flt(total_qty)
 		self.cargo_pur_amt = custom_total_purchase_amt

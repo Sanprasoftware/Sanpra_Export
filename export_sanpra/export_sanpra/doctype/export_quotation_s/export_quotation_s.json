@@ -33,6 +33,7 @@
   "thc_fcl_rupees",
   "bl_cost_docs_rupees",
   "column_break_gboe",
+  "cif_insurances",
   "ecgc_rate",
   "additional_document",
   "buyer_standard_document",
@@ -70,7 +71,6 @@
   "bank_charge",
   "thc_cost",
   "intrest_rate",
-  "linear_currency",
   "cin_insurance_calculation",
   "export_expense_total",
   "transit_days",
@@ -380,11 +380,6 @@
    "label": "Intrest Rate"
   },
   {
-   "fieldname": "linear_currency",
-   "fieldtype": "Float",
-   "label": "Linear Currency"
-  },
-  {
    "fieldname": "cin_insurance_calculation",
    "fieldtype": "Data",
    "label": "CIN Insurance Calculation"
@@ -395,8 +390,9 @@
    "label": "Export Expense Total"
   },
   {
+   "fetch_from": "discharge_country.transit_days",
    "fieldname": "transit_days",
-   "fieldtype": "Currency",
+   "fieldtype": "Float",
    "label": "Transit Days"
   },
   {
@@ -674,12 +670,18 @@
    "fieldname": "ecgc_rate",
    "fieldtype": "Data",
    "label": "ECGC Rate"
+  },
+  {
+   "fieldname": "cif_insurances",
+   "fieldtype": "Float",
+   "label": "CIF Insurances",
+   "precision": "2"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-03-20 13:35:22.867352",
+ "modified": "2026-04-01 10:33:57.436969",
  "modified_by": "Administrator",
  "module": "Export Sanpra",
  "name": "Export Quotation s",

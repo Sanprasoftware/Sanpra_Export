@@ -149,15 +149,16 @@ doctype_js = {
 # 		"on_trash": "method"
 # 	}
 # }
-doc_events = {
+doc_events = {  
     "Quotation": {
-        "before_save": "export_sanpra.public.py.quotation_export_quotation_s.create_export_quotation_s"
+        "after_insert": "export_sanpra.public.py.quotation_export_quotation_s.create_export_quotation_s",
+        "on_update": "export_sanpra.public.py.quotation_export_quotation_s.create_export_quotation_s"
     },
     "Sales Order": {
-        "before_save": "export_sanpra.public.py.export_sales_order_s.export_sales_order_s"
+        "after_insert": "export_sanpra.public.py.export_sales_order_s.export_sales_order_s"
     },
     "Sales Invoice": {
-        "before_save": "export_sanpra.public.py.export_sales_invoice_s.export_sales_invoice_s"
+        "after_insert": "export_sanpra.public.py.export_sales_invoice_s.export_sales_invoice_s"
     }
 }
 
