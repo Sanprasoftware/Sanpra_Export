@@ -44,7 +44,7 @@ def export_sales_order_s(doc, method=None):
     new_doc.selling_rate = export_quotation.selling_rate
     new_doc.selling_offer_rate_mt = export_quotation.selling_offer_rate_mt
     new_doc.cargo_pur_rate = export_quotation.cargo_pur_rate
-    new_doc.cost_of_export = export_quotation.cost_of_export
+    new_doc.cost_of_export = export_quotation.cost_of_export 
     new_doc.net_margin = export_quotation.net_margin
 
     new_doc.fob_cost = export_quotation.fob_cost
@@ -103,7 +103,7 @@ def export_sales_order_s(doc, method=None):
     new_doc.other_cost_doller__mt = export_quotation.other_cost_doller__mt 
     new_doc.bank_charge = export_quotation.bank_charge
     new_doc.thc_cost_rs__mt = export_quotation.thc_cost_rs__mt
-    new_doc.thc_cost_doller__mt = export_quotation.thc_cost_doller__mt
+    new_doc.thc_cost_doller__mt = export_quotation.thc_cost_doller__mt 
     new_doc.thc_cost = export_quotation.thc_cost
     new_doc.export_expense_rs__mt = export_quotation.export_expense_rs__mt
     new_doc.export_expense_doller = export_quotation.export_expense_doller

@@ -83,7 +83,7 @@ function get_export_sales_invoice_fields() {
 	}
 
 	const fields = [];
-	(meta.fields || []).forEach((field) => {
+	(meta.fields || []).forEach((field) => { 
 		if (!field || !field.fieldtype) {
 			return;
 		}

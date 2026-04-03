@@ -10,7 +10,7 @@ frappe.ui.form.on("Sales Order", {
 async function update_export_sales_order_button(frm) {
 	if (frm.is_new()) {
 		frm.remove_custom_button("Export Sales Order s");
-		return;
+		return; 
 	}
 
 	const order_type = (frm.doc.custom_sales_order_type || frm.doc.order_type || "").trim();

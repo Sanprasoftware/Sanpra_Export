@@ -12,7 +12,7 @@ def export_sales_invoice_s(doc, method=None):
    
     new_doc = frappe.new_doc("Export Sales Invoice s")
     new_doc.sales_invoice_id = doc.name 
-    new_doc.orgin = export_quotation.orgin
+    new_doc.orgin = export_quotation.orgin 
     new_doc.discharge_country = export_quotation.discharge_country
     new_doc.type_of_stuffing = export_quotation.type_of_stuffing
     new_doc.discharge_port = export_quotation.discharge_port
