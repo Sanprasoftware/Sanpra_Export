@@ -1,0 +1,61 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-04-07 16:15:49.450791",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "container_nos",
+  "seal_nos",
+  "gross_weight",
+  "weight",
+  "bags"
+ ],
+ "fields": [
+  {
+   "fieldname": "container_nos",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "CONTAINER NOS"
+  },
+  {
+   "fieldname": "seal_nos",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "SEAL NOS"
+  },
+  {
+   "fieldname": "gross_weight",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "GROSS WEIGHT"
+  },
+  {
+   "fieldname": "weight",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "WEIGHT"
+  },
+  {
+   "fieldname": "bags",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "BAGS"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-04-07 16:16:49.782191",
+ "modified_by": "Administrator",
+ "module": "Export Sanpra",
+ "name": "Shipping Detail",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

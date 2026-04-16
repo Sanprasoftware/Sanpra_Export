@@ -124,7 +124,7 @@ class ExportQuotations(Document):
 		if fumigation:	
 			self.fumigation_cost = no_of_fcl * flt(fumigation.get("rate"))
 		else:
-			self.fumigation_cost = 0
+			self.fumigation_cost = 0 
 
 		discharge_country = frappe.get_value("Country", {"name": self.discharge_country}, ["custom_ecgc_rate_"], as_dict=True) or {}
 		custom_ecgc_rate_ = flt(discharge_country.get("custom_ecgc_rate_"))

@@ -34,7 +34,6 @@
   "bl_cost_docs_rupees",
   "column_break_gboe",
   "cif_insurances",
-  "ecgc_rate",
   "additional_document",
   "buyer_standard_document",
   "section_break_pbdp",
@@ -667,11 +666,6 @@
    "precision": "2"
   },
   {
-   "fieldname": "ecgc_rate",
-   "fieldtype": "Data",
-   "label": "ECGC Rate"
-  },
-  {
    "fieldname": "cif_insurances",
    "fieldtype": "Float",
    "label": "CIF Insurances",
@@ -681,7 +675,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-01 10:33:57.436969",
+ "modified": "2026-04-13 12:46:51.857757",
  "modified_by": "Administrator",
  "module": "Export Sanpra",
  "name": "Export Quotation s",

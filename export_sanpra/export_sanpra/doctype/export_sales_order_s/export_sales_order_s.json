@@ -8,13 +8,25 @@
  "field_order": [
   "details_section",
   "sales_order_id",
-  "orgin",
-  "type_of_stuffing",
-  "agent_name",
   "column_break_swpz",
-  "discharge_country", 
-  "discharge_port",
+  "section_break_dzkm",
+  "voucher_date",
+  "agent_name",
   "loading_port",
+  "discharge_country",
+  "discharge_port",
+  "column_break_swwb",
+  "consignee_name",
+  "final_destination",
+  "freight_payment",
+  "insurance",
+  "weight_for_payments",
+  "column_break_cgso",
+  "additional_document",
+  "buyer_standard_document",
+  "orgin",
+  "tolerance_in_",
+  "type_of_stuffing",
   "section_break_ypoj",
   "contracted_qty",
   "no_of_fcl",
@@ -35,8 +47,6 @@
   "column_break_gboe",
   "cif_insurance",
   "ecgc_rate",
-  "additional_document",
-  "buyer_standard_document",
   "section_break_pbdp",
   "refresh",
   "selling_offer_rate_mt",
@@ -679,12 +689,64 @@
    "fieldtype": "Data",
    "label": "Sales Order Id",
    "unique": 1
+  },
+  {
+   "fieldname": "section_break_dzkm",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "consignee_name",
+   "fieldtype": "Link",
+   "label": "Consignee Name",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "column_break_swwb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "final_destination",
+   "fieldtype": "Link",
+   "label": "Final Destination",
+   "options": "Country"
+  },
+  {
+   "fieldname": "freight_payment",
+   "fieldtype": "Select",
+   "label": "Freight Payment",
+   "options": "Prepaid By Sea\nPostpaid\nPart Payment"
+  },
+  {
+   "fieldname": "insurance",
+   "fieldtype": "Select",
+   "label": "Insurance",
+   "options": "On Buyer's Account\nOn Sellers Account"
+  },
+  {
+   "fieldname": "weight_for_payments",
+   "fieldtype": "Select",
+   "label": "Weight For Payments",
+   "options": "\nGross For Net\nNet For Net"
+  },
+  {
+   "fieldname": "tolerance_in_",
+   "fieldtype": "Data",
+   "label": "Tolerance (IN %)"
+  },
+  {
+   "fieldname": "column_break_cgso",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "voucher_date",
+   "fieldtype": "Date",
+   "label": "Voucher Date"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-03-12 17:15:24.260175",
+ "modified": "2026-04-07 11:20:19.795485",
  "modified_by": "Administrator",
  "module": "Export Sanpra",
  "name": "Export Sales Order s",

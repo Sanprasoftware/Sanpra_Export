@@ -12,9 +12,41 @@
   "type_of_stuffing",
   "agent_name",
   "column_break_swpz",
-  "discharge_country",
-  "discharge_port",
+  "section_break_ckfd",
+  "agent__broker_name",
+  "type_of_fcl",
+  "l_c_no_and_date",
+  "sales_commission",
+  "terms_of_delivery",
+  "column_break_wdwn",
+  "country_of_origin",
+  "insurance",
   "loading_port",
+  "discharge_port",
+  "discharge_country",
+  "column_break_kuhb",
+  "buyer__if_other_than_consignee_",
+  "weight_for_payments",
+  "consignee__name",
+  "freight_payments",
+  "column_break_xiwt",
+  "notify_party_1",
+  "notify_party_2",
+  "final_destination",
+  "place_of_reclip_by_pre_carriage",
+  "shipment_date",
+  "section_break_bxzx",
+  "less_freight_insuranceusd",
+  "other_deduction_usd",
+  "gross_weight",
+  "ocean_freight_usdfcl",
+  "column_break_gvsg",
+  "fob_value_usd",
+  "fob_invoice_value_inr",
+  "igst_assessable_value_inr",
+  "igst_assessable_value_usd",
+  "export_duty_",
+  "export_duty_amount_",
   "section_break_ypoj",
   "contracted_qty",
   "no_of_fcl",
@@ -679,12 +711,185 @@
    "fieldtype": "Data",
    "label": "Sales Invoice Id",
    "unique": 1
+  },
+  {
+   "fieldname": "section_break_ckfd",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "agent__broker_name",
+   "fieldtype": "Link",
+   "label": "Agent / Broker name",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "type_of_fcl",
+   "fieldtype": "Data",
+   "label": "Type of FCL"
+  },
+  {
+   "fieldname": "l_c_no_and_date",
+   "fieldtype": "Data",
+   "label": "L C NO and Date"
+  },
+  {
+   "fieldname": "sales_commission",
+   "fieldtype": "Data",
+   "label": "Sales Commission"
+  },
+  {
+   "fieldname": "terms_of_delivery",
+   "fieldtype": "Select",
+   "label": "Terms Of Delivery",
+   "options": "CFR\nCNF\nCIF\nFOB"
+  },
+  {
+   "fieldname": "column_break_wdwn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "country_of_origin",
+   "fieldtype": "Link",
+   "label": "Country Of Origin",
+   "options": "Territory"
+  },
+  {
+   "fieldname": "insurance",
+   "fieldtype": "Select",
+   "label": "Insurance",
+   "options": "On Buyer's Account\nOn Sellers Account"
+  },
+  {
+   "fieldname": "column_break_kuhb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "buyer__if_other_than_consignee_",
+   "fieldtype": "Link",
+   "label": "Buyer ( If Other Than Consignee )",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "weight_for_payments",
+   "fieldtype": "Select",
+   "label": "Weight For Payments",
+   "options": "\nGross For Net\nNet For Net"
+  },
+  {
+   "fieldname": "consignee__name",
+   "fieldtype": "Link",
+   "label": "Consignee  Name",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "freight_payments",
+   "fieldtype": "Select",
+   "label": "Freight Payments",
+   "options": "Postpaid\nPrepaid\nPart Payment"
+  },
+  {
+   "fieldname": "column_break_xiwt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "notify_party_1",
+   "fieldtype": "Link",
+   "label": "Notify Party 1",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "notify_party_2",
+   "fieldtype": "Link",
+   "label": "Notify Party 2",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "final_destination",
+   "fieldtype": "Link",
+   "label": "Final Destination",
+   "options": "Country"
+  },
+  {
+   "fieldname": "place_of_reclip_by_pre_carriage",
+   "fieldtype": "Data",
+   "label": "Place Of Reclip By PRE Carriage"
+  },
+  {
+   "fieldname": "shipment_date",
+   "fieldtype": "Date",
+   "label": "Shipment Date"
+  },
+  {
+   "fieldname": "less_freight_insuranceusd",
+   "fieldtype": "Float",
+   "label": "Less Freight & Insurance(USD)",
+   "precision": "2"
+  },
+  {
+   "fieldname": "section_break_bxzx",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "other_deduction_usd",
+   "fieldtype": "Float",
+   "label": "Other Deduction (USD)",
+   "precision": "2"
+  },
+  {
+   "fieldname": "gross_weight",
+   "fieldtype": "Float",
+   "label": "Gross Weight",
+   "precision": "2"
+  },
+  {
+   "fieldname": "ocean_freight_usdfcl",
+   "fieldtype": "Float",
+   "label": "Ocean Freight USD/FCl",
+   "precision": "2"
+  },
+  {
+   "fieldname": "column_break_gvsg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "fob_value_usd",
+   "fieldtype": "Float",
+   "label": "FOB Value (USD)",
+   "precision": "2"
+  },
+  {
+   "fieldname": "fob_invoice_value_inr",
+   "fieldtype": "Float",
+   "label": "FOB Invoice Value (INR)",
+   "precision": "2"
+  },
+  {
+   "fieldname": "igst_assessable_value_inr",
+   "fieldtype": "Float",
+   "label": "IGST Assessable Value (INR)",
+   "precision": "2"
+  },
+  {
+   "fieldname": "igst_assessable_value_usd",
+   "fieldtype": "Float",
+   "label": "IGST Assessable Value (USD)",
+   "precision": "2"
+  },
+  {
+   "fieldname": "export_duty_",
+   "fieldtype": "Float",
+   "label": "Export Duty %"
+  },
+  {
+   "fieldname": "export_duty_amount_",
+   "fieldtype": "Float",
+   "label": "Export Duty Amount @"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-03-12 17:55:05.241202",
+ "modified": "2026-04-07 13:33:43.304494",
  "modified_by": "Administrator",
  "module": "Export Sanpra",
  "name": "Export Sales Invoice s",
