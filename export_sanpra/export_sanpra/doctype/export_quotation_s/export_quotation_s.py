@@ -147,7 +147,7 @@ class ExportQuotations(Document):
 		# final calculation
 		self.bank_charges_fob = flt(no_of_docs) * total_bank_charges
 
-		self.wc_interest = ((flt(custom_total_purchase_amt) * flt(self.intrest_rate)) / 100) / 365 * flt(self.transit_days)
+		self.wc_interest = ((flt(custom_total_purchase_amt) * flt(self.intrest_rate)) / 100) / 365 * flt(self.transits_days)
 
 		self.fob_cost = (
 			flt(self.local_transp_dpds_fob)

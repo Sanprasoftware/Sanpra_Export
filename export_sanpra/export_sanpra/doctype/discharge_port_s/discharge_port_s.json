@@ -8,7 +8,8 @@
  "engine": "InnoDB",
  "field_order": [
   "discharge_port",
-  "country"
+  "country",
+  "transit_days"
  ],
  "fields": [
   {
@@ -22,12 +23,18 @@
    "fieldtype": "Link",
    "label": "Country",
    "options": "Country"
+  },
+  {
+   "fieldname": "transit_days",
+   "fieldtype": "Float",
+   "label": "Transit Days",
+   "precision": "2"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-03-04 17:28:56.038218",
+ "modified": "2026-04-20 11:42:19.000481",
  "modified_by": "Administrator",
  "module": "Export Sanpra",
  "name": "Discharge Port s",

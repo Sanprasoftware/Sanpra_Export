@@ -14,7 +14,7 @@ import frappe
 def create_export_quotation_s(doc, method=None):
     if doc.custom_quotation_type_ != "Global":
         return
-
+ 
     # Check if already exists 
     export_doc_name = frappe.db.get_value( 
         "Export Quotation s",

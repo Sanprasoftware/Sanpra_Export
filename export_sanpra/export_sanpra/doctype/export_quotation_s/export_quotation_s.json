@@ -33,6 +33,7 @@
   "thc_fcl_rupees",
   "bl_cost_docs_rupees",
   "column_break_gboe",
+  "ecgc_rates",
   "cif_insurances",
   "additional_document",
   "buyer_standard_document",
@@ -67,12 +68,12 @@
   "craft_paper",
   "fumigation_cost",
   "other_cost",
-  "bank_charge",
   "thc_cost",
+  "bank_charge",
   "intrest_rate",
   "cin_insurance_calculation",
   "export_expense_total",
-  "transit_days",
+  "transits_days",
   "column_break_pgtd",
   "fob_cost_mt_rs__mt",
   "cin_ocean_freight_rs__mt",
@@ -389,12 +390,6 @@
    "label": "Export Expense Total"
   },
   {
-   "fetch_from": "discharge_country.transit_days",
-   "fieldname": "transit_days",
-   "fieldtype": "Float",
-   "label": "Transit Days"
-  },
-  {
    "fieldname": "section_break_pbdp",
    "fieldtype": "Section Break",
    "label": "Comparative Statement"
@@ -670,12 +665,24 @@
    "fieldtype": "Float",
    "label": "CIF Insurances",
    "precision": "2"
+  },
+  {
+   "fetch_from": "discharge_port.transit_days",
+   "fieldname": "transits_days",
+   "fieldtype": "Float",
+   "label": "Transit Days"
+  },
+  {
+   "fetch_from": "discharge_country.custom_ecgc_rate_",
+   "fieldname": "ecgc_rates",
+   "fieldtype": "Float",
+   "label": "ECGC Rate"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-13 12:46:51.857757",
+ "modified": "2026-04-20 11:47:31.621797",
  "modified_by": "Administrator",
  "module": "Export Sanpra",
  "name": "Export Quotation s",
