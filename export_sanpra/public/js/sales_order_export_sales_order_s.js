@@ -102,17 +102,25 @@ function get_export_sales_order_fields() {
 	return fields;
 }
 
+// function set_dialog_read_only(dialog, fieldnames) {
+// 	if (!Array.isArray(fieldnames)) {
+// 		return;
+// 	}
+// 	(dialog.fields || []).forEach((field) => {
+// 		if (!field || !field.df || !field.df.fieldname) {
+// 			return;
+// 		}
+// 		if (fieldnames.includes(field.df.fieldname)) {
+// 			field.df.read_only = 1;
+// 			field.refresh();
+// 		}
+// 	});
+// }
+
 function set_dialog_read_only(dialog, fieldnames) {
-	if (!Array.isArray(fieldnames)) {
-		return;
-	}
-	(dialog.fields || []).forEach((field) => {
-		if (!field || !field.df || !field.df.fieldname) {
-			return;
-		}
-		if (fieldnames.includes(field.df.fieldname)) {
-			field.df.read_only = 1;
-			field.refresh();
-		}
+	if (!Array.isArray(fieldnames)) return;
+
+	fieldnames.forEach(fieldname => {
+		dialog.set_df_property(fieldname, "read_only", 1);
 	});
 }

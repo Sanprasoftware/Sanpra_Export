@@ -115,7 +115,7 @@ class ExportQuotations(Document):
 			self.administrative_cost_fob = 0
 			self.other_cost = 0
 
-		fumigation = frappe.get_value("Fumigation s",
+		fumigation = frappe.get_value("Fumigation s",	
 			{"name": self.fumigation},
 			"*",
 			as_dict=True

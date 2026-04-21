@@ -8,7 +8,8 @@ def export_sales_order_s(doc, method=None):
     if frappe.db.exists("Export Sales Order s", {"sales_order_id": doc.name}):
         return
 
-    export_quotation = frappe.get_doc("Export Quotation s", {"name": doc.custom_quotation_id}, ["*"])
+    # export_quotation = frappe.get_doc("Export Quotation s", {"name": doc.custom_quotation_id}, ["*"])
+    export_quotation = frappe.get_doc("Export Quotation s", doc.custom_quotation_id)
     # frappe.throw(f"{export_quotation.name}, {export_quotation.transit_days}")
     new_doc = frappe.new_doc("Export Sales Order s")
     new_doc.sales_order_id = doc.name

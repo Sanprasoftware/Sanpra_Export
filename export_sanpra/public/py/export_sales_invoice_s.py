@@ -8,7 +8,8 @@ def export_sales_invoice_s(doc, method=None):
     if frappe.db.exists("Export Sales Invoice s", {"sales_invoice_id": doc.name}):
         return
 
-    export_quotation = frappe.get_doc("Export Sales Order s", {"name": doc.custom_sales_order_id}, ["*"])
+    # export_quotation = frappe.get_doc("Export Sales Order s", {"name": doc.custom_sales_order_id}, ["*"])
+    export_quotation = frappe.get_doc("Export Sales Order s", doc.custom_sales_order_id)
    
     new_doc = frappe.new_doc("Export Sales Invoice s")
     new_doc.sales_invoice_id = doc.name 
