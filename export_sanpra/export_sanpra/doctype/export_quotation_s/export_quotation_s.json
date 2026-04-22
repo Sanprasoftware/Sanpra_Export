@@ -69,10 +69,10 @@
   "fumigation_cost",
   "other_cost",
   "thc_cost",
+  "export_expense_rs__mt",
   "bank_charge",
   "intrest_rate",
   "cin_insurance_calculation",
-  "export_expense_total",
   "transits_days",
   "column_break_pgtd",
   "fob_cost_mt_rs__mt",
@@ -94,7 +94,7 @@
   "fumigation_rs__mt",
   "other_cost_rs__mt",
   "thc_cost_rs__mt",
-  "export_expense_rs__mt",
+  "export_expense_doller",
   "column_break_zzyf",
   "fob_cost_mt_doller",
   "cnf_ocean_freight_doller",
@@ -115,7 +115,7 @@
   "fumigation_doller__mt",
   "other_cost_doller__mt",
   "thc_cost_doller__mt",
-  "export_expense_doller"
+  "export_expense_total"
  ],
  "fields": [
   {
@@ -398,6 +398,7 @@
   {
    "fieldname": "refresh",
    "fieldtype": "Float",
+   "hidden": 1,
    "label": "Refresh"
   },
   {
@@ -683,7 +684,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-20 14:04:26.882989",
+ "modified": "2026-04-22 12:32:51.089108",
  "modified_by": "Administrator",
  "module": "Export Sanpra",
  "name": "Export Quotation s",

@@ -136,18 +136,31 @@ class ExportQuotations(Document):
 
 		if quotation_doc.payment_schedule:
 			for row in quotation_doc.payment_schedule:
-				bank_charges = frappe.get_value(
+				# bank_charges = frappe.get_value(
+				# 	"Payment Term",
+				# 	row.payment_term,
+				# 	"custom_bank_charges"
+				# ) or 0
+
+				values = frappe.get_value(
 					"Payment Term",
 					row.payment_term,
-					"custom_bank_charges"
-				) or 0
+					["custom_bank_charges", "custom_int_"],
+					as_dict=True
+				) or {}
+
+				bank_charges = flt(values.get("custom_bank_charges", 0))
+				custom_int = flt(values.get("custom_int_", 0))
+
 
 				total_bank_charges += flt(bank_charges)
+				total_custom_int += custom_int
 
 		# final calculation
 		self.bank_charges_fob = flt(no_of_docs) * total_bank_charges
 
-		self.wc_interest = ((flt(custom_total_purchase_amt) * flt(self.intrest_rate)) / 100) / 365 * flt(self.transits_days)
+		# self.wc_interest = ((flt(custom_total_purchase_amt) * flt(self.intrest_rate)) / 100) / 365 * flt(self.transits_days)
+		self.wc_interest = ((flt(custom_total_purchase_amt) * flt(total_custom_int)) / 100) / 365 * flt(self.transits_days)
 
 		self.fob_cost = (
 			flt(self.local_transp_dpds_fob)
