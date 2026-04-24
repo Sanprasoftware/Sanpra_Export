@@ -132,6 +132,7 @@ class ExportQuotations(Document):
 		self.ecgc_fob = flt(total_inr) * custom_ecgc_rate_ / 100 if total_inr else 0
 
 		total_bank_charges = 0
+		total_custom_int = 0
 		quotation_doc = frappe.get_doc("Quotation", self.quotation_id)
 
 		if quotation_doc.payment_schedule:
