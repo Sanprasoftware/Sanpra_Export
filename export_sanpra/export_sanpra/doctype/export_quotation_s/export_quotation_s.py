@@ -144,9 +144,9 @@ class ExportQuotations(Document):
 				# ) or 0
 
 				values = frappe.get_value(
-					"Payment Term",
+					"Payment Term", 
 					row.payment_term,
-					["custom_bank_charges", "custom_int_"],
+					["custom_bank_charges", "custom_int_"],  
 					as_dict=True
 				) or {}
 
