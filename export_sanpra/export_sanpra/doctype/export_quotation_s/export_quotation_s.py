@@ -4,6 +4,7 @@
 import frappe
 from frappe.model.document import Document
 from frappe.utils import flt
+# from erpnext.erpnext.setup.doctype import incoterm
 
 
 class ExportQuotations(Document):
@@ -16,13 +17,13 @@ class ExportQuotations(Document):
 		quotation_values = frappe.db.get_value(
 			"Quotation", 
 			{"name": self.quotation_id},
-			["conversion_rate", "custom_total_export_duty", "total_qty", "custom_total_purchase_amt", "base_total"],
+			["conversion_rate", "custom_total_export_duty", "total_qty", "custom_total_purchase_amt", "base_total", "incoterm"],
 			as_dict=True,
 		) or {}
 
 		
- 
 
+	
 		self.contracted_qty = quotation_values.get("total_qty")
 		# self.contracted_qty = quotation_values.total_qty
 		
@@ -35,8 +36,11 @@ class ExportQuotations(Document):
 		no_of_docs = flt(self.no_of_docs)
 		ocean_frieght_fcl_doller = flt(self.ocean_frieght_fcl_doller)
 		total_inr = flt(quotation_values.get("base_total"))
+		incoterm_value = quotation_values.get("incoterm")	
 		
-		
+		incoterm_doc = frappe.get_value("Incoterm", {"name": incoterm_value}, ["custom_cif_insurance_rate", "custom_amount"], as_dict=True) or {}
+
+		self.cif_insurances = incoterm_doc.get("custom_cif_insurance_rate", 0)
 		stuffing = frappe.get_value("FOB Costing s", 
 			{"name": self.type_of_stuffing}, 
 			"*",
