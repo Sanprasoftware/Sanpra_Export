@@ -152,13 +152,18 @@ doctype_js = {
 doc_events = {  
     "Quotation": {
         "after_insert": "export_sanpra.public.py.quotation_export_quotation_s.create_export_quotation_s",
-        "on_update": "export_sanpra.public.py.quotation_export_quotation_s.create_export_quotation_s"
+        "on_update": "export_sanpra.public.py.quotation_export_quotation_s.create_export_quotation_s",
+        "on_trash": "export_sanpra.public.py.quotation_export_quotation_s.delete_export_quotation_s"
     },
-    "Sales Order": {
-        "after_insert": "export_sanpra.public.py.export_sales_order_s.export_sales_order_s"
+    "Sales Order": { 
+        "after_insert": "export_sanpra.public.py.export_sales_order_s.export_sales_order_s",
+        "on_update": "export_sanpra.public.py.export_sales_order_s.export_sales_order_s",
+        "on_trash": "export_sanpra.public.py.export_sales_order_s.delete_export_sales_order_s"
     },
     "Sales Invoice": {
-        "after_insert": "export_sanpra.public.py.export_sales_invoice_s.export_sales_invoice_s"
+        "after_insert": "export_sanpra.public.py.export_sales_invoice_s.export_sales_invoice_s",
+        "on_update": "export_sanpra.public.py.export_sales_invoice_s.export_sales_invoice_s",
+        "on_trash": "export_sanpra.public.py.export_sales_invoice_s.delete_export_sales_invoice_s"
     }
 }
 

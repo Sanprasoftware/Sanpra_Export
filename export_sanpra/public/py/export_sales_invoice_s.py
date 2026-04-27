@@ -4,7 +4,7 @@ import frappe
 def export_sales_invoice_s(doc, method=None):
     if doc.custom_sales_invoice_type != "Global":
         return
-
+ 
     if frappe.db.exists("Export Sales Invoice s", {"sales_invoice_id": doc.name}):
         return
 
@@ -114,3 +114,11 @@ def export_sales_invoice_s(doc, method=None):
     new_doc.export_expense_total = export_quotation.export_expense_total
     new_doc.transit_days = export_quotation.transit_days
     new_doc.save()
+
+def delete_export_sales_invoice_s(doc, method=None):
+    export_doc_name = frappe.db.get_value(
+        "Export Sales Invoice s",
+        {"sales_invoice_id": doc.name}
+    )
+    if export_doc_name:
+        frappe.delete_doc("Export Sales Invoice s", export_doc_name, ignore_permissions=True)

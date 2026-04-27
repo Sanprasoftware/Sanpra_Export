@@ -31,10 +31,18 @@ def create_export_quotation_s(doc, method=None):
         export_doc.insert(ignore_permissions=True)
 
     # Call calculations
-    export_doc.all_calculations()
+    export_doc.all_calculations() 
 
     # Save changes
     export_doc.save(ignore_permissions=True)
+
+def delete_export_quotation_s(doc, method=None):
+    export_doc_name = frappe.db.get_value(
+        "Export Quotation s",
+        {"quotation_id": doc.name}
+    )
+    if export_doc_name:
+        frappe.delete_doc("Export Quotation s", export_doc_name, ignore_permissions=True)
 
 
 @frappe.whitelist()
