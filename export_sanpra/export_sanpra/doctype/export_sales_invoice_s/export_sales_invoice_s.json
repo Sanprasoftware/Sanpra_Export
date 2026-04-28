@@ -8,6 +8,7 @@
  "field_order": [
   "details_section",
   "sales_invoice_id",
+  "status",
   "orgin",
   "type_of_stuffing",
   "agent_name",
@@ -711,6 +712,14 @@
    "fieldtype": "Data",
    "label": "Sales Invoice Id",
    "unique": 1
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Active\nCancelled",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_ckfd",

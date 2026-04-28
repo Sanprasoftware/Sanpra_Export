@@ -1,18 +1,47 @@
 import frappe
+from frappe.utils import cint, cstr
+
+
+def set_export_sales_invoice_status_cancelled(doc, method=None):
+    export_doc_name = frappe.db.get_value("Export Sales Invoice s", {"sales_invoice_id": doc.name})
+    if export_doc_name:
+        frappe.db.set_value("Export Sales Invoice s", export_doc_name, "status", "Cancelled")
+
+
+def is_source_cancelled(doc):
+    return cint(doc.docstatus) == 2 or cstr(getattr(doc, "status", "")) == "Cancelled"
 
 @frappe.whitelist()
 def export_sales_invoice_s(doc, method=None):
     if doc.custom_sales_invoice_type != "Global":
         return
+
+    if is_source_cancelled(doc):
+        set_export_sales_invoice_status_cancelled(doc)
+        return
  
-    if frappe.db.exists("Export Sales Invoice s", {"sales_invoice_id": doc.name}):
+    export_doc_name = frappe.db.get_value("Export Sales Invoice s", {"sales_invoice_id": doc.name})
+    if export_doc_name:
         return
 
-    # export_quotation = frappe.get_doc("Export Sales Order s", {"name": doc.custom_sales_order_id}, ["*"])
+    if doc.amended_from:
+        old_export_doc_name = frappe.db.get_value(
+            "Export Sales Invoice s",
+            {"sales_invoice_id": doc.amended_from}
+        )
+        if old_export_doc_name:
+            old_export_doc = frappe.get_doc("Export Sales Invoice s", old_export_doc_name)
+            new_doc = frappe.copy_doc(old_export_doc)
+            new_doc.sales_invoice_id = doc.name
+            new_doc.status = "Active"
+            new_doc.insert(ignore_permissions=True)
+            return
+
     export_quotation = frappe.get_doc("Export Sales Order s", doc.custom_sales_order_id)
    
     new_doc = frappe.new_doc("Export Sales Invoice s")
-    new_doc.sales_invoice_id = doc.name 
+    new_doc.sales_invoice_id = doc.name
+    new_doc.status = "Active"
     new_doc.orgin = export_quotation.orgin 
     new_doc.discharge_country = export_quotation.discharge_country
     new_doc.type_of_stuffing = export_quotation.type_of_stuffing
@@ -113,7 +142,7 @@ def export_sales_invoice_s(doc, method=None):
     new_doc.cin_insurance_calculation = export_quotation.cin_insurance_calculation
     new_doc.export_expense_total = export_quotation.export_expense_total
     new_doc.transit_days = export_quotation.transit_days
-    new_doc.save()
+    new_doc.save(ignore_permissions=True)
 
 def delete_export_sales_invoice_s(doc, method=None):
     export_doc_name = frappe.db.get_value(

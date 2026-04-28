@@ -153,16 +153,19 @@ doc_events = {
     "Quotation": {
         "after_insert": "export_sanpra.public.py.quotation_export_quotation_s.create_export_quotation_s",
         "on_update": "export_sanpra.public.py.quotation_export_quotation_s.create_export_quotation_s",
+        "on_cancel": "export_sanpra.public.py.quotation_export_quotation_s.set_export_quotation_status_cancelled",
         "on_trash": "export_sanpra.public.py.quotation_export_quotation_s.delete_export_quotation_s"
     },
     "Sales Order": { 
         "after_insert": "export_sanpra.public.py.export_sales_order_s.export_sales_order_s",
         "on_update": "export_sanpra.public.py.export_sales_order_s.export_sales_order_s",
+        "on_cancel": "export_sanpra.public.py.export_sales_order_s.set_export_sales_order_status_cancelled",
         "on_trash": "export_sanpra.public.py.export_sales_order_s.delete_export_sales_order_s"
     },
     "Sales Invoice": {
         "after_insert": "export_sanpra.public.py.export_sales_invoice_s.export_sales_invoice_s",
         "on_update": "export_sanpra.public.py.export_sales_invoice_s.export_sales_invoice_s",
+        "on_cancel": "export_sanpra.public.py.export_sales_invoice_s.set_export_sales_invoice_status_cancelled",
         "on_trash": "export_sanpra.public.py.export_sales_invoice_s.delete_export_sales_invoice_s"
     }
 }

@@ -8,6 +8,7 @@
  "field_order": [
   "details_section",
   "sales_order_id",
+  "status",
   "column_break_swpz",
   "section_break_dzkm",
   "voucher_date",
@@ -689,6 +690,14 @@
    "fieldtype": "Data",
    "label": "Sales Order Id",
    "unique": 1
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Active\nCancelled",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_dzkm",

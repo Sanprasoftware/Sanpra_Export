@@ -1,4 +1,18 @@
 import frappe
+from frappe.utils import cint, cstr
+
+
+def set_export_quotation_status_cancelled(doc, method=None):
+    export_doc_name = frappe.db.get_value(
+        "Export Quotation s",
+        {"quotation_id": doc.name}
+    )
+    if export_doc_name:
+        frappe.db.set_value("Export Quotation s", export_doc_name, "status", "Cancelled")
+
+
+def is_source_cancelled(doc):
+    return cint(doc.docstatus) == 2 or cstr(getattr(doc, "status", "")) == "Cancelled"
 
 # @frappe.whitelist() 
 # def create_export_quotation_s(doc, method=None):
@@ -14,26 +28,43 @@ import frappe
 def create_export_quotation_s(doc, method=None):
     if doc.custom_quotation_type_ != "Global":
         return
+
+    if is_source_cancelled(doc):
+        set_export_quotation_status_cancelled(doc)
+        return
  
-    # Check if already exists 
-    export_doc_name = frappe.db.get_value( 
+    # Check if already exists for the current quotation.
+    export_doc_name = frappe.db.get_value(
         "Export Quotation s",
         {"quotation_id": doc.name}
     )
 
-    # If exists → get it
     if export_doc_name:
         export_doc = frappe.get_doc("Export Quotation s", export_doc_name)
+    elif doc.amended_from:
+        old_export_doc_name = frappe.db.get_value(
+            "Export Quotation s",
+            {"quotation_id": doc.amended_from}
+        )
+
+        if old_export_doc_name:
+            old_export_doc = frappe.get_doc("Export Quotation s", old_export_doc_name)
+            export_doc = frappe.copy_doc(old_export_doc)
+            export_doc.quotation_id = doc.name
+            export_doc.insert(ignore_permissions=True)
+        else:
+            export_doc = frappe.new_doc("Export Quotation s")
+            export_doc.quotation_id = doc.name
+            export_doc.insert(ignore_permissions=True)
     else:
-        # Create new
         export_doc = frappe.new_doc("Export Quotation s")
         export_doc.quotation_id = doc.name
         export_doc.insert(ignore_permissions=True)
 
-    # Call calculations
-    export_doc.all_calculations() 
+    export_doc.status = "Active"
 
-    # Save changes
+    # Recalculate derived values after creating or copying the export quotation.
+    export_doc.all_calculations()
     export_doc.save(ignore_permissions=True)
 
 def delete_export_quotation_s(doc, method=None):

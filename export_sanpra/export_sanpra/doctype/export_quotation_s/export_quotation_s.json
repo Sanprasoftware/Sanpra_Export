@@ -8,6 +8,7 @@
  "field_order": [
   "details_section",
   "quotation_id",
+  "status",
   "orgin",
   "type_of_stuffing",
   "agent_name",
@@ -124,6 +125,14 @@
    "label": "Quotation Id",
    "read_only": 1,
    "unique": 1
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Active\nCancelled",
+   "read_only": 1
   },
   {
    "default": "India",
