@@ -5,6 +5,10 @@ app_description = "Create app for export"
 app_email = "contact@sanpra.co.in"
 app_license = "mit"
 
+from export_sanpra.overrides.tax_withholding_entry import apply_tax_withholding_patches
+
+apply_tax_withholding_patches()
+
 # Apps
 # ------------------
 
