@@ -1,0 +1,309 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-06-05 14:23:30.438643",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_vnhy",
+  "amended_from",
+  "naming_series",
+  "budget_against",
+  "company",
+  "cost_center",
+  "project",
+  "column_break_osiv",
+  "from_fiscal_year",
+  "to_fiscal_year",
+  "distribution_frequency",
+  "budget_start_date",
+  "budget_end_date",
+  "budget_amount",
+  "section_break_isqk",
+  "get_accounts",
+  "section_break_kpyv",
+  "budget_accounts",
+  "section_break_ehhw",
+  "applicable_on_material_request",
+  "action_if_annual_budget_exceeded_on_mr",
+  "action_if_accumulated_monthly_budget_exceeded_on_mr",
+  "column_break_tztx",
+  "applicable_on_purchase_order",
+  "action_if_annual_budget_exceeded_on_po",
+  "action_if_accumulated_monthly_budget_exceeded_on_po",
+  "section_break_hcap",
+  "applicable_on_booking_actual_expenses",
+  "action_if_annual_budget_exceeded_on_actual",
+  "action_if_accumulated_monthly_budget_exceeded_on_actual",
+  "section_break_tinj",
+  "column_break_fdmn",
+  "applicable_on_cumulative_expense",
+  "action_if_anual_budget_exceeded_on_cumulative_expense",
+  "action_if_accumulated_monthly_exceeded_on_cumulative_expense",
+  "section_break_ynqr",
+  "revision_of"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_vnhy",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Export Budget",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Series",
+   "reqd": 1
+  },
+  {
+   "fieldname": "budget_against",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Budget Against",
+   "options": "\nCost Center\nProject",
+   "reqd": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval: doc.budget_against == \"Cost Center\"",
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "mandatory_depends_on": "eval: doc.budget_against == \"Cost Center\"",
+   "options": "Cost Center"
+  },
+  {
+   "depends_on": "eval: doc.budget_against == \"Project\"",
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "mandatory_depends_on": "eval: doc.budget_against == \"Project\"",
+   "options": "Project"
+  },
+  {
+   "fieldname": "column_break_osiv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "from_fiscal_year",
+   "fieldtype": "Link",
+   "label": "From Fiscal Year",
+   "options": "Fiscal Year",
+   "reqd": 1
+  },
+  {
+   "fieldname": "to_fiscal_year",
+   "fieldtype": "Link",
+   "label": "To Fiscal Year",
+   "options": "Fiscal Year",
+   "reqd": 1
+  },
+  {
+   "default": "Yearly",
+   "fieldname": "distribution_frequency",
+   "fieldtype": "Select",
+   "label": "Distribution Frequency",
+   "options": "\nMonthly\nQuarterly\nHalf-Yearly\nYearly",
+   "reqd": 1
+  },
+  {
+   "fieldname": "budget_start_date",
+   "fieldtype": "Date",
+   "label": "Budget Start Date"
+  },
+  {
+   "fieldname": "budget_end_date",
+   "fieldtype": "Date",
+   "label": "Budget End Date"
+  },
+  {
+   "fieldname": "budget_amount",
+   "fieldtype": "Currency",
+   "label": "Budget Amount"
+  },
+  {
+   "fieldname": "section_break_kpyv",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "budget_accounts",
+   "fieldtype": "Table",
+   "label": "Budget Accounts",
+   "options": "Export Budget Items"
+  },
+  {
+   "fieldname": "section_break_ehhw",
+   "fieldtype": "Section Break",
+   "label": "Control Action"
+  },
+  {
+   "default": "0",
+   "fieldname": "applicable_on_material_request",
+   "fieldtype": "Check",
+   "label": "Applicable on Material Request"
+  },
+  {
+   "default": "Stop",
+   "depends_on": "eval: doc.applicable_on_material_request == 1",
+   "fieldname": "action_if_annual_budget_exceeded_on_mr",
+   "fieldtype": "Select",
+   "label": "Action if Annual Budget Exceeded on MR",
+   "options": "\nStop\nWarn\nIgnore"
+  },
+  {
+   "default": "Warn",
+   "depends_on": "eval: doc.applicable_on_material_request == 1",
+   "fieldname": "action_if_accumulated_monthly_budget_exceeded_on_mr",
+   "fieldtype": "Select",
+   "label": "Action if Accumulated Monthly Budget Exceeded on MR",
+   "options": "\nStop\nWarn\nIgnore"
+  },
+  {
+   "fieldname": "column_break_tztx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "applicable_on_purchase_order",
+   "fieldtype": "Check",
+   "label": "Applicable on Purchase Order"
+  },
+  {
+   "default": "Stop",
+   "depends_on": "eval: doc.applicable_on_purchase_order == 1",
+   "fieldname": "action_if_annual_budget_exceeded_on_po",
+   "fieldtype": "Select",
+   "label": "Action if Annual Budget Exceeded on PO",
+   "options": "\nStop\nWarn\nIgnore"
+  },
+  {
+   "default": "Warn",
+   "depends_on": "eval: doc.applicable_on_purchase_order == 1",
+   "fieldname": "action_if_accumulated_monthly_budget_exceeded_on_po",
+   "fieldtype": "Select",
+   "label": "Action if Accumulated Monthly Budget Exceeded on PO",
+   "options": "\nStop\nWarn\nIgnore"
+  },
+  {
+   "fieldname": "section_break_hcap",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "applicable_on_booking_actual_expenses",
+   "fieldtype": "Check",
+   "label": "Applicable on booking actual expenses"
+  },
+  {
+   "default": "Stop",
+   "depends_on": "eval: doc.applicable_on_booking_actual_expenses == 1",
+   "fieldname": "action_if_annual_budget_exceeded_on_actual",
+   "fieldtype": "Select",
+   "label": "Action if Annual Budget Exceeded on Actual",
+   "options": "\nStop\nWarn\nIgnore"
+  },
+  {
+   "default": "Warn",
+   "depends_on": "eval: doc.applicable_on_booking_actual_expenses == 1",
+   "fieldname": "action_if_accumulated_monthly_budget_exceeded_on_actual",
+   "fieldtype": "Select",
+   "label": "Action if Accumulated Monthly Budget Exceeded on Actual",
+   "options": "\nStop\nWarn\nIgnore"
+  },
+  {
+   "fieldname": "section_break_tinj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "(Purchase Order + Material Request + Actual Expense)",
+   "fieldname": "applicable_on_cumulative_expense",
+   "fieldtype": "Check",
+   "label": "Applicable on Cumulative Expense"
+  },
+  {
+   "depends_on": "eval: doc.applicable_on_cumulative_expense == 1",
+   "fieldname": "action_if_anual_budget_exceeded_on_cumulative_expense",
+   "fieldtype": "Select",
+   "label": "Action if Anual Budget Exceeded on Cumulative Expense",
+   "options": "\nStop\nWarn\nIgnore"
+  },
+  {
+   "depends_on": "eval: doc.applicable_on_cumulative_expense == 1",
+   "fieldname": "action_if_accumulated_monthly_exceeded_on_cumulative_expense",
+   "fieldtype": "Select",
+   "label": "Action if Accumulative Monthly Budget Exceeded on Cumulative Expense",
+   "options": "\nStop\nWarn\nIgnore"
+  },
+  {
+   "fieldname": "section_break_ynqr",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "revision_of",
+   "fieldtype": "Data",
+   "label": "Revision Of"
+  },
+  {
+   "fieldname": "column_break_fdmn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_isqk",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "get_accounts",
+   "fieldtype": "Button",
+   "label": "Get Accounts"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-06-06 11:12:44.543764",
+ "modified_by": "Administrator",
+ "module": "Export Sanpra",
+ "name": "Export Budget",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
