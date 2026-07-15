@@ -102,13 +102,13 @@ def calculate_custom_purc_brokaerage_inr__mt(qty=None, custom_purc_brokaerage_in
     custom_purc_brokaerage_inr__mt = frappe.utils.flt(custom_purc_brokaerage_inr__mt)
     return qty * custom_purc_brokaerage_inr__mt
 
-
+ 
 @frappe.whitelist()
 def calculate_custom_export_duty(custom_total_amount_before_duty=None, custom_export_duty_single_item=None):
     custom_total_amount_before_duty = frappe.utils.flt(custom_total_amount_before_duty)
     custom_export_duty_single_item = frappe.utils.flt(custom_export_duty_single_item)
     return (custom_total_amount_before_duty * custom_export_duty_single_item) / 100
-
+ 
 
 @frappe.whitelist()
 def calculate_custom_export_duty_single_item(custom_export_duty=None, custom_total_amount_before_duty=None):

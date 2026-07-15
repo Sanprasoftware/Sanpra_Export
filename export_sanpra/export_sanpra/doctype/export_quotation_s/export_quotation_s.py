@@ -166,6 +166,8 @@ class ExportQuotations(Document):
 
 		# self.wc_interest = ((flt(custom_total_purchase_amt) * flt(self.intrest_rate)) / 100) / 365 * flt(self.transits_days)
 		self.wc_interest = ((flt(custom_total_purchase_amt) * flt(total_custom_int)) / 100) / 365 * flt(self.transits_days)
+		
+		self.cargo_shortage_cost = sum(flt(item.custom__cargo_shortage_inr__mt) for item in quotation_items)
 
 		self.fob_cost = (
 			flt(self.local_transp_dpds_fob)
@@ -186,8 +188,16 @@ class ExportQuotations(Document):
 		)
 
 		# (Ocean Frieght FCL $ (Doller) * No of FCL * Exchange Rate) * linear currency %
-		self.cnf_ocean_freight = flt(self.ocean_frieght_fcl_doller) * no_of_fcl * conversion_rate * linear_currency
+		
+		# Change by Devika Mam start on 15-07-2026
+		# self.cnf_ocean_freight = flt(self.ocean_frieght_fcl_doller) * no_of_fcl * conversion_rate * linear_currency
+
+		
+		cnf_ocean_freight_percentage = self.ocean_frieght_fcl_calcu * linear_currency / 100
+		self.cnf_ocean_freight = self.ocean_frieght_fcl_calcu + cnf_ocean_freight_percentage
+
 		# self.cnf_ocean_freight = flt(self.ocean_frieght_fcl_calcu) + (flt(self.ocean_frieght_fcl_calcu) * flt(self.linear_currency) / 100)
+		# Change by Devika Mam End on 15-07-2026
 
 		total_item_rate = sum(flt(item.rate) for item in quotation_items)
 		item_count = len(quotation_items)
@@ -212,7 +222,7 @@ class ExportQuotations(Document):
 		
 
 		
-		self.cargo_shortage_cost = sum(flt(item.custom__cargo_shortage_inr__mt) for item in quotation_items)
+		# self.cargo_shortage_cost = sum(flt(item.custom__cargo_shortage_inr__mt) for item in quotation_items)
 		
 		self.silica_gel = flt(self.silica_gel__kg_rate) * flt(self.silica_gel_kg__fcl) * flt(self.no_of_fcl)
 		self.craft_paper = flt(self.craft_paper__kg_rate) * flt(self.craft_paper_kg_fcl) * flt(self.no_of_fcl)

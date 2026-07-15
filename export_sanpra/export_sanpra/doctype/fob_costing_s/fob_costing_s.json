@@ -51,7 +51,7 @@
   {
    "fieldname": "linear_currency_",
    "fieldtype": "Float",
-   "label": "Linear Currency %"
+   "label": "Linear Currency"
   },
   {
    "fieldname": "craft_paper__rate_kg",
@@ -67,7 +67,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-03-13 11:34:31.272807",
+ "modified": "2026-07-15 13:20:34.018525",
  "modified_by": "Administrator",
  "module": "Export Sanpra",
  "name": "FOB Costing s",

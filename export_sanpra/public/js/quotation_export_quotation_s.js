@@ -4,7 +4,7 @@ frappe.ui.form.on("Quotation", {
 	},
 	after_save(frm) {
 		update_export_button(frm);
-	},
+	}, 
 });
  
 function update_export_button(frm) {
