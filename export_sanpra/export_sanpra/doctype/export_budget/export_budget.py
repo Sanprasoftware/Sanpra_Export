@@ -107,7 +107,7 @@ class ExportBudget(Document):
 				},
 				{
 					"account": "ECGC Insurance Charges - NFPL",
-					"budget_amount": flt(export_quotation.cnf_ocean_freight)
+					"budget_amount": flt(export_quotation.ecgc_fob)
 				},
 				{
 					"account": "OTHER EXPORT EXPENSES - NFPL",
@@ -123,7 +123,8 @@ class ExportBudget(Document):
 				},
 				{
 					"account": "Export Duty Expenses - NFPL",
-					"budget_amount": flt(export_quotation.cnf_ocean_freight)
+					# "budget_amount": flt(export_quotation.cnf_ocean_freight)
+					"budget_amount": 0
 				},
 				{
 					"account": "Brokerage & Commision on Export Sales - NFPL",
