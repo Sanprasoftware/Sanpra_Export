@@ -103,7 +103,7 @@ class ExportBudget(Document):
 				},
 				{
 					"account": "BROKERAGE AND COMMISION (PURCHASES) - NFPL",
-					"budget_amount": flt(export_quotation.ecgc_fob)
+					"budget_amount": flt(export_quotation.purc_brokaerage_fob)
 				},
 				{
 					"account": "ECGC Insurance Charges - NFPL",
