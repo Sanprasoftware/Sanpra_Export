@@ -125,3 +125,4 @@ function set_dialog_read_only(dialog, fieldnames) {
 		dialog.set_df_property(fieldname, "read_only", 1);
 	});
 }
+
