@@ -193,11 +193,23 @@ class ExportQuotations(Document):
 		# self.cnf_ocean_freight = flt(self.ocean_frieght_fcl_doller) * no_of_fcl * conversion_rate * linear_currency
 
 		
-		cnf_ocean_freight_percentage = self.ocean_frieght_fcl_calcu * linear_currency / 100
-		self.cnf_ocean_freight = self.ocean_frieght_fcl_calcu + cnf_ocean_freight_percentage
+		# cnf_ocean_freight_percentage = self.ocean_frieght_fcl_calcu * linear_currency / 100
+		# self.cnf_ocean_freight = self.ocean_frieght_fcl_calcu + cnf_ocean_freight_percentage
 
 		# self.cnf_ocean_freight = flt(self.ocean_frieght_fcl_calcu) + (flt(self.ocean_frieght_fcl_calcu) * flt(self.linear_currency) / 100)
 		# Change by Devika Mam End on 15-07-2026
+
+		no_of_fcl = frappe.utils.flt(self.no_of_fcl)
+		ocean_freight = frappe.utils.flt(self.ocean_frieght_fcl_calcu)
+
+		cnf_ocan_total = (
+			(ocean_freight * no_of_fcl * conversion_rate)
+			* linear_currency
+		) / 100
+
+		# frappe.throw(str(cnf_ocan_total))
+
+		self.cnf_ocean_freight = cnf_ocan_total + ocean_freight    #Changes by Karpe Sir 29/07/2026
 
 		total_item_rate = sum(flt(item.rate) for item in quotation_items)
 		item_count = len(quotation_items)
