@@ -18,6 +18,6 @@ frappe.ui.form.on("Export Budget", {
                 }
             }   
         })
-	},
+	}, 
 });
- 
+
