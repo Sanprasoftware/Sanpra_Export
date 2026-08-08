@@ -207,13 +207,13 @@
    "fieldtype": "Section Break"
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "applicable_on_booking_actual_expenses",
    "fieldtype": "Check",
    "label": "Applicable on booking actual expenses"
   },
   {
-   "default": "Stop",
+   "default": "Warn",
    "depends_on": "eval: doc.applicable_on_booking_actual_expenses == 1",
    "fieldname": "action_if_annual_budget_exceeded_on_actual",
    "fieldtype": "Select",
@@ -280,7 +280,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-06-06 11:12:44.543764",
+ "modified": "2026-08-07 15:47:35.023945",
  "modified_by": "Administrator",
  "module": "Export Sanpra",
  "name": "Export Budget",
