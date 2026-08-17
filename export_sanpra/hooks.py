@@ -171,6 +171,9 @@ doc_events = {
         "on_update": "export_sanpra.public.py.export_sales_invoice_s.export_sales_invoice_s",
         "on_cancel": "export_sanpra.public.py.export_sales_invoice_s.set_export_sales_invoice_status_cancelled",
         "on_trash": "export_sanpra.public.py.export_sales_invoice_s.delete_export_sales_invoice_s"
+    },
+    "Purchase Invoice": {
+        "before_save": "export_sanpra.public.py.purchase_invoice.validate_supplier_invoice_no"
     }
 }
 
