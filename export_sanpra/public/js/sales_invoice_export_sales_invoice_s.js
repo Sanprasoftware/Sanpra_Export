@@ -32,11 +32,11 @@ async function update_export_sales_invoice_button(frm) {
   
 	frm.remove_custom_button("Export Sales Invoice s");
 	frm.add_custom_button("Export Sales Invoice s", () => {
-		open_export_sales_invoice_popup(export_name);
+		open_export_sales_invoice_popup(frm, export_name);
 	});
 }
 
-function open_export_sales_invoice_popup(export_name) {
+function open_export_sales_invoice_popup(frm, export_name) {
 	if (!export_name) {
 		return;
 	}
@@ -56,13 +56,14 @@ function open_export_sales_invoice_popup(export_name) {
 					frappe.call({
 						method: "frappe.client.save",
 						args: { doc: updated },
-						callback: (r) => {
+						callback: async (r) => {
 							if (!r.exc) {
 								frappe.show_alert({
 									message: "Export Sales Invoice s updated",
 									indicator: "green",
 								});
 								dialog.hide();
+								await frm.reload_doc();
 							}
 						},
 					});
