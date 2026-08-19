@@ -1,0 +1,1 @@
+frappe.query_reports["Bank Wise Forward Contract Summary"]={filters:[{fieldname:"company",label:__("Company"),fieldtype:"Link",options:"Company",default:frappe.defaults.get_user_default("Company")},{fieldname:"bank",label:__("Bank"),fieldtype:"Link",options:"Bank"},{fieldname:"currency",label:__("Currency"),fieldtype:"Link",options:"Currency"}]};

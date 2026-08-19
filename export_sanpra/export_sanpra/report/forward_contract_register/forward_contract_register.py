@@ -1,0 +1,1 @@
+from export_sanpra.export_sanpra.report.forex_reports import contract_register as execute

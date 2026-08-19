@@ -1,0 +1,153 @@
+{
+  "doctype": "DocType",
+  "name": "Forward Contract Settlement",
+  "module": "Export Sanpra",
+  "autoname": "naming_series:",
+  "is_submittable": 1,
+  "track_changes": 1,
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "options": "FCS-.YYYY.-.#####",
+      "default": "FCS-.YYYY.-.#####",
+      "reqd": 1,
+      "label": "Naming Series"
+    },
+    {
+      "fieldname": "company",
+      "fieldtype": "Link",
+      "options": "Company",
+      "reqd": 1,
+      "label": "Company"
+    },
+    {
+      "fieldname": "forward_contract",
+      "fieldtype": "Link",
+      "options": "Forward Contract",
+      "reqd": 1,
+      "label": "Forward Contract"
+    },
+    {
+      "fieldname": "bank",
+      "fieldtype": "Link",
+      "options": "Bank",
+      "reqd": 1,
+      "label": "Bank"
+    },
+    {
+      "fieldname": "settlement_date",
+      "fieldtype": "Date",
+      "reqd": 1,
+      "label": "Settlement Date"
+    },
+    {
+      "fieldname": "currency",
+      "fieldtype": "Link",
+      "options": "Currency",
+      "reqd": 1,
+      "label": "Currency"
+    },
+    {
+      "fieldname": "settlement_amount",
+      "fieldtype": "Currency",
+      "options": "currency",
+      "reqd": 1,
+      "label": "Settlement Amount"
+    },
+    {
+      "fieldname": "forward_rate",
+      "fieldtype": "Float",
+      "reqd": 1,
+      "label": "Forward Rate"
+    },
+    {
+      "fieldname": "actual_bank_rate",
+      "fieldtype": "Float",
+      "reqd": 1,
+      "label": "Actual Bank Realization Rate"
+    },
+    {
+      "fieldname": "reference_value",
+      "fieldtype": "Currency",
+      "label": "Invoice Reference Value"
+    },
+    {
+      "fieldname": "forward_value",
+      "fieldtype": "Currency",
+      "read_only": 1,
+      "label": "Forward Contract Value"
+    },
+    {
+      "fieldname": "actual_value",
+      "fieldtype": "Currency",
+      "read_only": 1,
+      "label": "Actual Realization Value"
+    },
+    {
+      "fieldname": "gain_loss",
+      "fieldtype": "Currency",
+      "read_only": 1,
+      "label": "Forex Gain / Loss"
+    },
+    {
+      "fieldname": "hedge_gain_loss",
+      "fieldtype": "Currency",
+      "read_only": 1,
+      "label": "Hedge Gain / Loss"
+    },
+    {
+      "fieldname": "bank_charge",
+      "fieldtype": "Currency",
+      "label": "Bank Charge"
+    },
+    {
+      "fieldname": "journal_entry",
+      "fieldtype": "Link",
+      "options": "Journal Entry",
+      "read_only": 1,
+      "allow_on_submit": 1,
+      "no_copy": 1,
+      "label": "Journal Entry"
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Small Text",
+      "label": "Remarks"
+    },
+    {
+      "fieldname": "amended_from",
+      "fieldtype": "Link",
+      "options": "Forward Contract Settlement",
+      "read_only": 1,
+      "no_copy": 1,
+      "label": "Amended From"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "Forex Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "report": 1
+    },
+    {
+      "role": "Accounts Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "submit": 1,
+      "cancel": 1,
+      "report": 1
+    },
+    {
+      "role": "Accounts User",
+      "read": 1,
+      "report": 1
+    }
+  ]
+}

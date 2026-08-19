@@ -273,3 +273,10 @@ doc_events = {
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
+scheduler_events = {
+    "daily": [
+        "export_sanpra.export_sanpra.forex_tasks.update_maturity_indicators",
+        "export_sanpra.export_sanpra.forex_notifications.send_maturity_notifications",
+    ]
+}
+after_migrate = "export_sanpra.export_sanpra.forex_install.after_migrate"

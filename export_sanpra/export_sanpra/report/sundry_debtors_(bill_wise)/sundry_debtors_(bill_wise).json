@@ -1,0 +1,44 @@
+{
+ "add_total_row": 0,
+ "add_translate_data": 0,
+ "columns": [],
+ "creation": "2026-08-17 15:16:59.026019",
+ "disabled": 1,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": null,
+ "modified": "2026-08-17 15:18:07.285540",
+ "modified_by": "Administrator",
+ "module": "Export Sanpra",
+ "name": "Sundry Debtors (Bill Wise)",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Sales Invoice",
+ "reference_report": "Accounts Receivable",
+ "report_name": "Sundry Debtors (Bill Wise)",
+ "report_type": "Custom Report",
+ "roles": [
+  {
+   "role": "Accounts Manager"
+  },
+  {
+   "role": "Accounts User"
+  },
+  {
+   "role": "Employee Self Service"
+  },
+  {
+   "role": "Sales User"
+  },
+  {
+   "role": "Gate Pass Tracker"
+  },
+  {
+   "role": "Sales Invoice Submission"
+  }
+ ],
+ "timeout": 0
+}

@@ -1,0 +1,1 @@
+from export_sanpra.export_sanpra.report.exposure_grouping import execute

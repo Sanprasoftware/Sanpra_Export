@@ -1,0 +1,171 @@
+{
+  "doctype": "DocType",
+  "name": "Forward Contract Utilization",
+  "module": "Export Sanpra",
+  "autoname": "naming_series:",
+  "is_submittable": 1,
+  "track_changes": 1,
+  "field_order": [
+    "naming_series",
+    "company",
+    "forward_contract",
+    "sales_order",
+    "customer",
+    "sales_invoice",
+    "payment_entry",
+    "utilization_date",
+    "currency",
+    "utilized_amount",
+    "forward_rate",
+    "settlement_rate",
+    "company_currency_amount",
+    "reference_exchange_rate",
+    "forex_gain_loss",
+    "remarks",
+    "amended_from"
+  ],
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "options": "FCU-.YYYY.-.#####",
+      "default": "FCU-.YYYY.-.#####",
+      "reqd": 1,
+      "label": "Naming Series"
+    },
+    {
+      "fieldname": "company",
+      "fieldtype": "Link",
+      "options": "Company",
+      "reqd": 1,
+      "label": "Company"
+    },
+    {
+      "fieldname": "forward_contract",
+      "fieldtype": "Link",
+      "options": "Forward Contract",
+      "reqd": 1,
+      "search_index": 1,
+      "label": "Forward Contract"
+    },
+    {
+      "fieldname": "sales_order",
+      "fieldtype": "Link",
+      "options": "Sales Order",
+      "read_only": 1,
+      "search_index": 1,
+      "label": "Sales Order"
+    },
+    {
+      "fieldname": "customer",
+      "fieldtype": "Link",
+      "options": "Customer",
+      "read_only": 1,
+      "search_index": 1,
+      "label": "Customer"
+    },
+    {
+      "fieldname": "sales_invoice",
+      "fieldtype": "Link",
+      "options": "Sales Invoice",
+      "search_index": 1,
+      "label": "Sales Invoice"
+    },
+    {
+      "fieldname": "payment_entry",
+      "fieldtype": "Link",
+      "options": "Payment Entry",
+      "label": "Payment Entry"
+    },
+    {
+      "fieldname": "utilization_date",
+      "fieldtype": "Date",
+      "reqd": 1,
+      "label": "Utilization Date"
+    },
+    {
+      "fieldname": "currency",
+      "fieldtype": "Link",
+      "options": "Currency",
+      "reqd": 1,
+      "label": "Currency"
+    },
+    {
+      "fieldname": "utilized_amount",
+      "fieldtype": "Currency",
+      "options": "currency",
+      "reqd": 1,
+      "label": "Utilized Amount"
+    },
+    {
+      "fieldname": "forward_rate",
+      "fieldtype": "Float",
+      "reqd": 1,
+      "label": "Forward Rate"
+    },
+    {
+      "fieldname": "settlement_rate",
+      "fieldtype": "Float",
+      "label": "Settlement / Realization Rate"
+    },
+    {
+      "fieldname": "company_currency_amount",
+      "fieldtype": "Currency",
+      "read_only": 1,
+      "label": "Amount in Company Currency"
+    },
+    {
+      "fieldname": "reference_exchange_rate",
+      "fieldtype": "Float",
+      "label": "Invoice Reference Exchange Rate"
+    },
+    {
+      "fieldname": "forex_gain_loss",
+      "fieldtype": "Currency",
+      "read_only": 1,
+      "label": "Forex Gain / Loss"
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Small Text",
+      "label": "Remarks"
+    },
+    {
+      "fieldname": "amended_from",
+      "fieldtype": "Link",
+      "options": "Forward Contract Utilization",
+      "read_only": 1,
+      "no_copy": 1,
+      "label": "Amended From"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "Forex Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "report": 1
+    },
+    {
+      "role": "Accounts Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "submit": 1,
+      "cancel": 1,
+      "report": 1
+    },
+    {
+      "role": "Accounts User",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "submit": 1,
+      "report": 1
+    }
+  ]
+}

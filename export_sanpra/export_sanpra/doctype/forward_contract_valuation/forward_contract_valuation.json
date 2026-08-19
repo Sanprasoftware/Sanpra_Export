@@ -1,0 +1,31 @@
+{
+ "doctype": "DocType",
+ "name": "Forward Contract Valuation",
+ "module": "Export Sanpra",
+ "autoname": "naming_series:",
+ "is_submittable": 1,
+ "track_changes": 1,
+ "field_order": ["naming_series","company","forward_contract","valuation_date","currency","contract_type","open_amount","forward_rate","market_rate","previous_mtm_value","mtm_value","adjustment_amount","journal_entry","remarks","amended_from"],
+ "fields": [
+  {"fieldname":"naming_series","fieldtype":"Select","options":"FCV-.YYYY.-.#####","default":"FCV-.YYYY.-.#####","reqd":1},
+  {"fieldname":"company","fieldtype":"Link","options":"Company","reqd":1,"read_only":1},
+  {"fieldname":"forward_contract","fieldtype":"Link","options":"Forward Contract","reqd":1,"search_index":1},
+  {"fieldname":"valuation_date","fieldtype":"Date","reqd":1},
+  {"fieldname":"currency","fieldtype":"Link","options":"Currency","read_only":1},
+  {"fieldname":"contract_type","fieldtype":"Select","options":"Export\nImport","read_only":1},
+  {"fieldname":"open_amount","fieldtype":"Currency","options":"currency","read_only":1},
+  {"fieldname":"forward_rate","fieldtype":"Float","read_only":1},
+  {"fieldname":"market_rate","fieldtype":"Float","reqd":1},
+  {"fieldname":"previous_mtm_value","fieldtype":"Currency","read_only":1},
+  {"fieldname":"mtm_value","fieldtype":"Currency","read_only":1},
+  {"fieldname":"adjustment_amount","fieldtype":"Currency","read_only":1},
+  {"fieldname":"journal_entry","fieldtype":"Link","options":"Journal Entry","read_only":1,"allow_on_submit":1,"no_copy":1},
+  {"fieldname":"remarks","fieldtype":"Small Text"},
+  {"fieldname":"amended_from","fieldtype":"Link","options":"Forward Contract Valuation","read_only":1,"no_copy":1}
+ ],
+ "permissions": [
+  {"role":"Forex Manager","read":1,"write":1,"create":1,"submit":1,"cancel":1,"amend":1,"report":1},
+  {"role":"Accounts Manager","read":1,"write":1,"create":1,"submit":1,"cancel":1,"report":1},
+  {"role":"Accounts User","read":1,"report":1}
+ ]
+}

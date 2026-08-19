@@ -1,0 +1,59 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{font-family:Arial,sans-serif;font-size:10.5pt;line-height:1.45;color:#222;margin:28px}h1{color:#17365d;font-size:24pt}h2{color:#1f4e79;border-bottom:1px solid #9dc3e6;padding-bottom:4px;margin-top:24px}h3{color:#2f5597}table{border-collapse:collapse;width:100%;margin:10px 0}th,td{border:1px solid #aaa;padding:6px;vertical-align:top}th{background:#d9eaf7}code{background:#eee;padding:1px 3px}.note{background:#fff2cc;border-left:4px solid #bf9000;padding:9px}.ok{background:#e2f0d9;border-left:4px solid #548235;padding:9px}.page{page-break-before:always}ol li,ul li{margin:4px 0}.small{font-size:9pt;color:#555}</style></head><body>
+<h1>Forex Management – User & Process Guide</h1>
+<p><b>Company:</b> Nutrich Foods Pvt Ltd<br><b>ERP Site:</b> nutrichdev.erpkey.in<br><b>App:</b> export_sanpra<br><b>ERPNext:</b> Version 16<br><b>Prepared:</b> 18 August 2026</p>
+<div class="ok"><b>Purpose:</b> Manage export foreign-currency exposure from Sales Order through Forward Contract booking, utilization, bank settlement, gain/loss analysis and closure without modifying ERPNext core accounting.</div>
+
+<h2>1. End-to-End Process</h2>
+<p><b>Export Sales Order → Forward Contract → Sales Invoice → Customer Receipt → Forward Utilization → Bank Settlement → Gain/Loss Review → Contract Closure</b></p>
+<ol><li>Create and submit a foreign-currency Sales Order.</li><li>Book one or more Forward Contracts against the order.</li><li>Submit the Forward Contract after checking bank, dates, amount and rate.</li><li>Create Sales Invoice through the normal ERPNext sales process.</li><li>Create one or more Forward Contract Utilizations against the invoice/receipt.</li><li>Receive customer payment using standard Payment Entry. Do not bypass ERPNext exchange gain/loss processing.</li><li>Record bank settlement and actual realization rate.</li><li>Review operational gain/loss reports and bank charges.</li><li>After all utilizations/settlements are complete, close the operational contract.</li></ol>
+
+<h2>2. Initial Company Configuration</h2>
+<p>Open <b>Company → Nutrich Foods Pvt Ltd → Forex / Forward Contract Accounts</b>.</p>
+<table><tr><th>Setting</th><th>Use</th></tr><tr><td>Allow Forward Overhedging</td><td>Keep unchecked unless management authorizes booking above Sales Order foreign amount.</td></tr><tr><td>Forex Gain/Loss Accounts</td><td>ERPNext exchange difference account references.</td></tr><tr><td>Forward Contract Gain/Loss Accounts</td><td>Reserved for configurable forward-settlement accounting.</td></tr><tr><td>Forex Bank Charge Account</td><td>Bank charges related to realization/settlement.</td></tr><tr><td>Default Forex Cost Center</td><td>Default analytical cost center.</td></tr><tr><td>Enable Forward Maturity Notifications</td><td>Enables daily reminder emails.</td></tr><tr><td>Notify Before Days</td><td>Comma-separated reminder days, e.g. <code>7,3,1,0</code>.</td></tr><tr><td>Forex Manager Role</td><td>Enabled users with this role receive maturity reminders.</td></tr></table>
+
+<h2>3. Entry Flow – Forward Contract</h2>
+<ol><li>Open a submitted export Sales Order.</li><li>Click <b>Create → Forward Contract</b>.</li><li>Confirm copied fields: Company, Customer, Sales Order, Currency and Sales Order Total.</li><li>Enter Bank, Bank Account, bank contract number, Booking Date, Maturity Date, Contract Amount and Forward Rate.</li><li>Optionally enter dealer/reference, charges, revised maturity or rollover references.</li><li>Save and Submit.</li></ol>
+<p>System calculates: <b>Contract Company Value = Contract Amount × Forward Rate</b>; <b>Available = Contract Amount − Submitted Utilizations</b>; <b>Hedge % = Booked ÷ Sales Order Total × 100</b>.</p>
+<div class="note">A submitted Sales Order is mandatory. Currency must match. With over-hedging disabled, total submitted contracts cannot exceed the Sales Order grand total.</div>
+
+<h2>4. Worked Example</h2>
+<table><tr><th>Item</th><th>Value</th></tr><tr><td>Sales Order</td><td>USD 100,000</td></tr><tr><td>Forward booking</td><td>USD 80,000 @ INR 84.50</td></tr><tr><td>Unhedged exposure</td><td>USD 20,000</td></tr><tr><td>Utilization</td><td>USD 60,000</td></tr><tr><td>Available forward balance</td><td>USD 20,000</td></tr><tr><td>Hedge percentage</td><td>80%</td></tr></table>
+
+<h2>5. Entry Flow – Utilization</h2>
+<ol><li>From a submitted foreign-currency Sales Invoice click <b>Create → Forward Utilization</b>, or open the submitted Forward Contract and click the same action.</li><li>Select an eligible contract. Eligibility requires matching company, customer and currency, active status and positive available balance.</li><li>Enter Utilization Date and amount. Link Sales Invoice and/or Payment Entry where applicable.</li><li>Confirm Forward Rate, invoice/reference exchange rate and settlement rate.</li><li>Save and Submit.</li></ol>
+<p>Every submit or cancellation recalculates utilization from all submitted utilization records. No incremental balance is trusted. Status becomes Open, Partly Utilized or Fully Utilized.</p>
+<p>Multiple contracts against one invoice are handled by creating separate utilization transactions, preserving a complete audit trail.</p>
+
+<h2>6. Customer Receipt and Accounting</h2>
+<ol><li>Create Payment Entry using ERPNext’s standard Receive flow and allocate the Sales Invoice.</li><li>Enter the bank realization/exchange values required by standard ERPNext.</li><li>Optionally link Forward Contract and Utilization in the Forex section.</li><li>Submit Payment Entry normally.</li></ol>
+<div class="note"><b>Important:</b> The module does not replace or duplicate ERPNext’s exchange gain/loss posting. Forward booking is an off-balance-sheet operational record. Reports provide analytical forward performance separately.</div>
+
+<h2>7. Entry Flow – Bank Settlement</h2>
+<ol><li>Open <b>Forward Contract Settlement → New</b>.</li><li>Select the Forward Contract. Company, Bank, Currency, Rate and available context are fetched.</li><li>Enter Settlement Date, Settlement Amount, Actual Bank Rate and accounting Reference Value.</li><li>Enter Bank Charge and optional Journal Entry reference.</li><li>Save and Submit.</li></ol>
+<p><b>Forward Value</b> = Amount × Forward Rate. <b>Actual Value</b> = Amount × Actual Bank Rate. <b>Gain/Loss</b> = Actual Value − Reference Value.</p>
+<p>The server blocks settlement above the utilized-but-unsettled foreign amount and blocks mismatched company, bank or currency.</p>
+
+<h2>8. Cancellation, Closure and Rollover</h2>
+<ul><li>A Forward Contract cannot be cancelled while submitted utilizations exist.</li><li>Cancel linked utilizations first; balances and status are recalculated from submitted records.</li><li>Use cancellation amount/charge for operational tracking.</li><li>Use revised maturity date for an approved extension.</li><li>Use Rollover From/To links to preserve the original-to-new contract chain.</li><li>Critical submitted fields cannot be silently modified; amend the document when changes are required.</li></ul>
+
+<div class="page"></div><h2>9. Reports and Their Use</h2>
+<table><tr><th>Report</th><th>Management Use</th></tr><tr><td>Forward Contract Register</td><td>Complete contract register with booking/maturity date filters.</td></tr><tr><td>Open Forward Contracts</td><td>Available balances and Expired/Due Soon/Upcoming indicators.</td></tr><tr><td>Forward Contract Utilization Report</td><td>Audit utilization by contract, invoice, payment and date.</td></tr><tr><td>Export Order vs Forward Booking</td><td>One row per Sales Order: booked, utilized, available, unhedged and hedge %.</td></tr><tr><td>Hedged vs Unhedged Exposure</td><td>Management chart comparing hedged and unhedged exposure.</td></tr><tr><td>Contract Maturity Report</td><td>Overdue, Today, Next 7/15/30 Days and Later buckets.</td></tr><tr><td>Forex Gain Loss Report</td><td>Invoice/reference, forward, actual realization, charges and net analytical result.</td></tr><tr><td>Bank Wise Forward Contract Summary</td><td>Contract count, weighted average rate, balances, gain/loss and maturity concentration by bank/currency.</td></tr></table>
+
+<h2>10. Roles and Controls</h2>
+<table><tr><th>Role</th><th>Access</th></tr><tr><td>Forex Manager</td><td>Create, edit, submit, cancel, amend and report.</td></tr><tr><td>Accounts Manager</td><td>Read/report contracts; create and process settlements/utilizations as configured.</td></tr><tr><td>Accounts User</td><td>Read and utilization/report access.</td></tr><tr><td>Sales User</td><td>Read-only contract visibility; cannot change bank contract details.</td></tr></table>
+
+<h2>11. Daily Monitoring Checklist</h2>
+<ol><li>Review Open Forward Contracts and expired balances.</li><li>Review Contract Maturity Report for next 7/15/30 days.</li><li>Compare Export Order vs Forward Booking for unhedged orders.</li><li>Record new invoice/payment utilizations promptly.</li><li>Reconcile bank settlement advice, charges and actual rate.</li><li>Review Forex Gain Loss and Bank-wise Summary.</li><li>Close or roll over contracts only after approvals and linked transaction checks.</li></ol>
+
+<h2>12. Validation and Test Evidence</h2>
+<ul><li>All eight reports executed successfully.</li><li>USD Sales Order mapping verified.</li><li>Submit → partial utilization → cancellation guard → utilization cancel → contract cancel flow passed.</li><li>Zero amount/rate, invalid maturity, currency mismatch, over-hedging and utilization overflow were blocked.</li><li>Settlement values and gain/loss passed.</li><li>Over-settlement was blocked.</li><li>Two daily jobs are active: maturity status and notification email.</li><li>Tests used database savepoints and left no test transactions.</li></ul>
+
+<h2>13. Troubleshooting</h2>
+<ul><li><b>Create button missing:</b> Confirm document is submitted and currency differs from Company currency; refresh/clear browser cache.</li><li><b>No eligible contract:</b> Check company, customer, currency, status, maturity context and available balance.</li><li><b>Over-hedging error:</b> Reduce booking or obtain approval and enable Company setting.</li><li><b>Cancellation blocked:</b> Cancel submitted utilizations first.</li><li><b>No reminder email:</b> Enable Company notification setting, validate reminder days, role membership and user email status.</li><li><b>Accounting mismatch:</b> Reconcile standard Payment Entry exchange posting separately from analytical forward settlement values.</li></ul>
+
+<h2>14. Automatic Settlement GL and Mark-to-Market</h2>
+<ul><li>Configure and verify the Forward Gain, Forward Loss, Bank Charge, MTM Unrealized Gain, MTM Unrealized Loss, MTM Asset/Liability and default Forex Cost Center fields on Company.</li><li>Enable Automatic Forward Settlement GL only after configuration approval. Settlement posts only the hedge difference: (Forward Rate - Actual Bank Rate) x Settlement Amount, plus bank charges. Standard Payment Entry continues to own ordinary exchange gain/loss.</li><li>Enable Forward MTM GL to submit Forward Contract Valuation documents. Export MTM is (Forward Rate - Market Rate) x Open Amount; Import uses the reverse direction.</li><li>Each valuation posts only the movement from the previous submitted valuation, so the MTM balance equals the latest valuation. Cancel valuations newest-first.</li><li>Linked Journal Entries use deterministic source-linked names and are cancelled with their Settlement or Valuation.</li></ul>
+
+<p class="small">Forward booking itself creates no GL entry. Settlement and MTM GL posting are opt-in Company controls and remain disabled until all required accounts are configured and approved.</p>
+</body></html>

@@ -1,0 +1,332 @@
+{
+  "doctype": "DocType",
+  "name": "Forward Contract",
+  "module": "Export Sanpra",
+  "autoname": "naming_series:",
+  "is_submittable": 1,
+  "track_changes": 1,
+  "title_field": "contract_number",
+  "search_fields": "contract_number,bank,customer,sales_order",
+  "field_order": [
+    "naming_series",
+    "company",
+    "contract_number",
+    "contract_type",
+    "bank",
+    "bank_account",
+    "booking_date",
+    "maturity_date",
+    "revised_maturity_date",
+    "status",
+    "maturity_status",
+    "currency",
+    "company_currency",
+    "contract_amount",
+    "forward_rate",
+    "contract_value_company_currency",
+    "utilized_amount",
+    "available_amount",
+    "utilization_percentage",
+    "customer",
+    "sales_order",
+    "sales_order_currency",
+    "sales_order_total",
+    "total_forward_booked_against_sales_order",
+    "unhedged_sales_order_amount",
+    "bank_reference_number",
+    "dealer_name",
+    "remarks",
+    "booking_charge",
+    "bank_charge",
+    "other_charge",
+    "total_charges",
+    "cancellation_amount",
+    "cancellation_charge",
+    "rollover_from",
+    "rollover_to",
+    "amended_from"
+  ],
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "fieldtype": "Select",
+      "options": "FC-.YYYY.-.#####",
+      "default": "FC-.YYYY.-.#####",
+      "reqd": 1,
+      "label": "Naming Series"
+    },
+    {
+      "fieldname": "company",
+      "fieldtype": "Link",
+      "options": "Company",
+      "reqd": 1,
+      "in_list_view": 1,
+      "label": "Company"
+    },
+    {
+      "fieldname": "contract_number",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "unique": 1,
+      "label": "Contract Number"
+    },
+    {
+      "fieldname": "contract_type",
+      "fieldtype": "Select",
+      "options": "Export\nImport",
+      "default": "Export",
+      "reqd": 1,
+      "label": "Contract Type"
+    },
+    {
+      "fieldname": "bank",
+      "fieldtype": "Link",
+      "options": "Bank",
+      "reqd": 1,
+      "search_index": 1,
+      "label": "Bank"
+    },
+    {
+      "fieldname": "bank_account",
+      "fieldtype": "Link",
+      "options": "Bank Account",
+      "label": "Bank Account"
+    },
+    {
+      "fieldname": "booking_date",
+      "fieldtype": "Date",
+      "reqd": 1,
+      "label": "Booking Date"
+    },
+    {
+      "fieldname": "maturity_date",
+      "fieldtype": "Date",
+      "reqd": 1,
+      "search_index": 1,
+      "label": "Maturity Date"
+    },
+    {
+      "fieldname": "revised_maturity_date",
+      "fieldtype": "Date",
+      "label": "Revised Maturity Date"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "options": "Draft\nOpen\nPartly Utilized\nFully Utilized\nMatured\nClosed\nCancelled",
+      "default": "Draft",
+      "read_only": 1,
+      "allow_on_submit": 1,
+      "search_index": 1,
+      "label": "Status"
+    },
+    {
+      "fieldname": "maturity_status",
+      "fieldtype": "Select",
+      "options": "Active\nDue Soon\nMatured\nExpired With Balance",
+      "read_only": 1,
+      "allow_on_submit": 1,
+      "label": "Maturity Status"
+    },
+    {
+      "fieldname": "currency",
+      "fieldtype": "Link",
+      "options": "Currency",
+      "reqd": 1,
+      "search_index": 1,
+      "label": "Contract Currency"
+    },
+    {
+      "fieldname": "company_currency",
+      "fieldtype": "Link",
+      "options": "Currency",
+      "reqd": 1,
+      "label": "Company Currency"
+    },
+    {
+      "fieldname": "contract_amount",
+      "fieldtype": "Currency",
+      "options": "currency",
+      "reqd": 1,
+      "label": "Contract Amount"
+    },
+    {
+      "fieldname": "forward_rate",
+      "fieldtype": "Float",
+      "reqd": 1,
+      "label": "Forward Rate"
+    },
+    {
+      "fieldname": "contract_value_company_currency",
+      "fieldtype": "Currency",
+      "options": "company_currency",
+      "read_only": 1,
+      "label": "Contract Value (Company Currency)"
+    },
+    {
+      "fieldname": "utilized_amount",
+      "fieldtype": "Currency",
+      "options": "currency",
+      "read_only": 1,
+      "allow_on_submit": 1,
+      "label": "Utilized Amount"
+    },
+    {
+      "fieldname": "available_amount",
+      "fieldtype": "Currency",
+      "options": "currency",
+      "read_only": 1,
+      "allow_on_submit": 1,
+      "label": "Available Contract Amount"
+    },
+    {
+      "fieldname": "utilization_percentage",
+      "fieldtype": "Percent",
+      "read_only": 1,
+      "allow_on_submit": 1,
+      "label": "Utilization Percentage"
+    },
+    {
+      "fieldname": "customer",
+      "fieldtype": "Link",
+      "options": "Customer",
+      "search_index": 1,
+      "label": "Customer"
+    },
+    {
+      "fieldname": "sales_order",
+      "fieldtype": "Link",
+      "options": "Sales Order",
+      "search_index": 1,
+      "label": "Sales Order"
+    },
+    {
+      "fieldname": "sales_order_currency",
+      "fieldtype": "Link",
+      "options": "Currency",
+      "read_only": 1,
+      "label": "Sales Order Currency"
+    },
+    {
+      "fieldname": "sales_order_total",
+      "fieldtype": "Currency",
+      "options": "sales_order_currency",
+      "read_only": 1,
+      "label": "Sales Order Total"
+    },
+    {
+      "fieldname": "total_forward_booked_against_sales_order",
+      "fieldtype": "Currency",
+      "options": "currency",
+      "read_only": 1,
+      "label": "Total Forward Booked Against Sales Order"
+    },
+    {
+      "fieldname": "unhedged_sales_order_amount",
+      "fieldtype": "Currency",
+      "options": "currency",
+      "read_only": 1,
+      "label": "Unhedged Sales Order Amount"
+    },
+    {
+      "fieldname": "bank_reference_number",
+      "fieldtype": "Data",
+      "label": "Bank Reference Number"
+    },
+    {
+      "fieldname": "dealer_name",
+      "fieldtype": "Data",
+      "label": "Dealer Name"
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Small Text",
+      "label": "Remarks"
+    },
+    {
+      "fieldname": "booking_charge",
+      "fieldtype": "Currency",
+      "options": "company_currency",
+      "label": "Booking Charge"
+    },
+    {
+      "fieldname": "bank_charge",
+      "fieldtype": "Currency",
+      "options": "company_currency",
+      "label": "Bank Charge"
+    },
+    {
+      "fieldname": "other_charge",
+      "fieldtype": "Currency",
+      "options": "company_currency",
+      "label": "Other Charge"
+    },
+    {
+      "fieldname": "total_charges",
+      "fieldtype": "Currency",
+      "options": "company_currency",
+      "read_only": 1,
+      "label": "Total Charges"
+    },
+    {
+      "fieldname": "cancellation_amount",
+      "fieldtype": "Currency",
+      "options": "currency",
+      "label": "Cancellation Amount"
+    },
+    {
+      "fieldname": "cancellation_charge",
+      "fieldtype": "Currency",
+      "options": "company_currency",
+      "label": "Cancellation Charge"
+    },
+    {
+      "fieldname": "rollover_from",
+      "fieldtype": "Link",
+      "options": "Forward Contract",
+      "label": "Rollover From"
+    },
+    {
+      "fieldname": "rollover_to",
+      "fieldtype": "Link",
+      "options": "Forward Contract",
+      "read_only": 1,
+      "label": "Rollover To"
+    },
+    {
+      "fieldname": "amended_from",
+      "fieldtype": "Link",
+      "options": "Forward Contract",
+      "read_only": 1,
+      "no_copy": 1,
+      "label": "Amended From"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "Forex Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "cancel": 1,
+      "amend": 1,
+      "report": 1
+    },
+    {
+      "role": "Accounts Manager",
+      "read": 1,
+      "report": 1
+    },
+    {
+      "role": "Accounts User",
+      "read": 1,
+      "report": 1
+    },
+    {
+      "role": "Sales User",
+      "read": 1
+    }
+  ]
+}
