@@ -1,6 +1,7 @@
 import frappe
 from frappe import _
 from frappe.utils import add_days, flt, today
+from export_sanpra.export_sanpra.doctype.forward_contract.forward_contract import get_sales_orders, update_sales_order
 
 
 def _active_utilized(contract):
@@ -25,7 +26,8 @@ def partial_cancel(contract, amount, charge=0, reason=None):
     status="Closed" if available<=0 else "Partly Utilized" if _active_utilized(doc.name) else "Open"
     frappe.db.set_value("Forward Contract",doc.name,{"cancellation_amount":new_cancelled,"cancellation_charge":flt(doc.cancellation_charge)+charge,"available_amount":available,"status":status},update_modified=True)
     doc.add_comment("Info",_("Partial cancellation: {0} {1}; charge {2}. Reason: {3}").format(doc.currency,amount,charge,reason or "-"))
-    _sync_sales_order(doc.sales_order)
+    for sales_order in get_sales_orders(doc):
+        update_sales_order(sales_order)
     return frappe.get_value("Forward Contract",doc.name,["cancellation_amount","available_amount","status"],as_dict=True)
 
 
@@ -37,7 +39,8 @@ def close_contract(contract, reason=None):
     if effective_available(doc)>0: frappe.throw(_("Cancel, utilize, settle, or roll over the remaining balance before closure"))
     frappe.db.set_value("Forward Contract",doc.name,"status","Closed",update_modified=True)
     doc.add_comment("Info",_("Contract closed. Reason: {0}").format(reason or "-"))
-    _sync_sales_order(doc.sales_order)
+    for sales_order in get_sales_orders(doc):
+        update_sales_order(sales_order)
 
 
 @frappe.whitelist()
@@ -49,6 +52,8 @@ def make_rollover(contract, amount=None, maturity_date=None):
     target=frappe.new_doc("Forward Contract")
     for field in ("company","contract_type","bank","bank_account","customer","sales_order","currency","company_currency","sales_order_currency","sales_order_total","dealer_name"):
         target.set(field,source.get(field))
+    for row in source.get("sales_orders") or []:
+        target.append("sales_orders", {"sales_order": row.sales_order, "sales_order_total": row.sales_order_total, "booked_amount": flt(row.booked_amount) * amount / flt(source.contract_amount)})
     target.booking_date=today(); target.maturity_date=maturity_date or add_days(source.maturity_date,30)
     target.contract_amount=amount; target.forward_rate=source.forward_rate; target.rollover_from=source.name
     return target

@@ -28,6 +28,7 @@
     "available_amount",
     "utilization_percentage",
     "customer",
+    "sales_orders",
     "sales_order",
     "sales_order_currency",
     "sales_order_total",
@@ -194,11 +195,19 @@
       "label": "Customer"
     },
     {
+      "fieldname": "sales_orders",
+      "fieldtype": "Table",
+      "options": "Forward Contract Sales Order",
+      "label": "Sales Orders"
+    },
+    {
       "fieldname": "sales_order",
       "fieldtype": "Link",
       "options": "Sales Order",
       "search_index": 1,
-      "label": "Sales Order"
+      "label": "Sales Order (Legacy)",
+      "read_only": 1,
+      "hidden": 1
     },
     {
       "fieldname": "sales_order_currency",

@@ -33,8 +33,29 @@ def utilization(filters=None):
  return ["Utilization:Link/Forward Contract Utilization:160","Date:Date:100","Forward Contract:Link/Forward Contract:150","Contract Number:Data:130","Bank:Link/Bank:120","Customer:Link/Customer:140","Sales Order:Link/Sales Order:130","Sales Invoice:Link/Sales Invoice:130","Payment Entry:Link/Payment Entry:130","Currency:Link/Currency:80","Utilized Amount:Currency:120","Forward Rate:Float:90","Settlement Rate:Float:100","Forex Gain/Loss:Currency:120"],frappe.db.sql(f"""select u.name utilization,u.utilization_date date,u.forward_contract,fc.contract_number,fc.bank,u.customer,u.sales_order,u.sales_invoice,u.payment_entry,u.currency,u.utilized_amount,u.forward_rate,u.settlement_rate,u.forex_gain_loss from `tabForward Contract Utilization` u join `tabForward Contract` fc on fc.name=u.forward_contract where u.docstatus=1 {where} order by u.utilization_date desc""",v,as_dict=True)
 
 def order_booking(filters=None):
- where,v=_where(frappe._dict(filters or {}),{"company":"so.company","customer":"so.customer","currency":"so.currency"})
- return ["Sales Order:Link/Sales Order:140","Date:Date:100","Customer:Link/Customer:150","Currency:Link/Currency:80","Sales Order Amount:Currency:130","Forward Booked:Currency:120","Forward Utilized:Currency:120","Remaining Forward:Currency:130","Unhedged Exposure:Currency:130","Hedge %:Percent:90","Delivery Date:Date:100","Contract Count:Int:100"],frappe.db.sql(f"""select so.name sales_order,so.transaction_date date,so.customer,so.currency,so.grand_total sales_order_amount,coalesce(sum(fc.contract_amount),0) forward_booked,coalesce(sum(fc.utilized_amount),0) forward_utilized,coalesce(sum(fc.available_amount),0) remaining_forward,greatest(so.grand_total-coalesce(sum(fc.contract_amount),0),0) unhedged_exposure,case when so.grand_total then coalesce(sum(fc.contract_amount),0)/so.grand_total*100 else 0 end hedge_percentage,so.delivery_date,count(fc.name) contract_count from `tabSales Order` so left join `tabForward Contract` fc on fc.sales_order=so.name and fc.docstatus=1 where so.docstatus=1 {where} group by so.name order by so.transaction_date desc""",v,as_dict=True)
+ filters=frappe._dict(filters or {}); where,v=_where(filters,{"company":"so.company","customer":"so.customer","currency":"so.currency"})
+ columns=["Sales Order:Link/Sales Order:140","Date:Date:100","Customer:Link/Customer:150","Currency:Link/Currency:80","Sales Order Amount:Currency:130","Forward Booked:Currency:120","Forward Utilized:Currency:120","Remaining Forward:Currency:130","Unhedged Exposure:Currency:130","Hedge %:Percent:90","Delivery Date:Date:100","Contract Count:Int:100"]
+ data=frappe.db.sql(f"""select so.name sales_order,so.transaction_date date,so.customer,so.currency,so.grand_total sales_order_amount,
+  coalesce(a.forward_booked,0) forward_booked,coalesce(u.forward_utilized,0) forward_utilized,
+  greatest(coalesce(a.forward_booked,0)-coalesce(u.forward_utilized,0),0) remaining_forward,
+  greatest(so.grand_total-coalesce(a.forward_booked,0),0) unhedged_exposure,
+  case when so.grand_total then coalesce(a.forward_booked,0)/so.grand_total*100 else 0 end hedge_percentage,
+  so.delivery_date,coalesce(a.contract_count,0) contract_count
+  from `tabSales Order` so
+  left join (
+   select x.sales_order,sum(x.booked) forward_booked,count(distinct x.contract_name) contract_count from (
+    select row.sales_order,fc.name contract_name,row.booked_amount*greatest(fc.contract_amount-fc.cancellation_amount,0)/nullif(fc.contract_amount,0) booked
+    from `tabForward Contract Sales Order` row join `tabForward Contract` fc on fc.name=row.parent
+    where fc.docstatus=1 and fc.status!='Closed'
+    union all
+    select fc.sales_order,fc.name,greatest(fc.contract_amount-fc.cancellation_amount,0)
+    from `tabForward Contract` fc where fc.docstatus=1 and fc.status!='Closed' and fc.sales_order is not null
+     and not exists (select 1 from `tabForward Contract Sales Order` row where row.parent=fc.name)
+   ) x group by x.sales_order
+  ) a on a.sales_order=so.name
+  left join (select sales_order,sum(utilized_amount) forward_utilized from `tabForward Contract Utilization` where docstatus=1 group by sales_order) u on u.sales_order=so.name
+  where so.docstatus=1 {where} order by so.transaction_date desc""",v,as_dict=True)
+ return columns,data
 
 def maturity(filters=None):
  cols,data=open_contracts(filters); now=getdate(today())
