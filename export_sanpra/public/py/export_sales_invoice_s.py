@@ -42,6 +42,17 @@ def export_sales_invoice_s(doc, method=None):
     new_doc = frappe.new_doc("Export Sales Invoice s")
     new_doc.sales_invoice_id = doc.name
     new_doc.status = "Active"
+    new_doc.consignee__name = export_quotation.consignee_name
+    new_doc.final_destination = export_quotation.final_destination
+    new_doc.insurance = export_quotation.insurance
+    new_doc.weight_for_payments = export_quotation.weight_for_payments
+    new_doc.freight_payments = (
+        "Prepaid" if export_quotation.freight_payment == "Prepaid By Sea"
+        else export_quotation.freight_payment
+    )
+    new_doc.country_of_origin = export_quotation.orgin
+    new_doc.agent__broker_name = export_quotation.agent_name
+    new_doc.ocean_freight_usdfcl = export_quotation.ocean_frieght_fcl_doller
     new_doc.orgin = export_quotation.orgin 
     new_doc.discharge_country = export_quotation.discharge_country
     new_doc.type_of_stuffing = export_quotation.type_of_stuffing

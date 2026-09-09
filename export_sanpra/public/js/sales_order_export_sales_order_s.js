@@ -83,9 +83,22 @@ function get_export_sales_order_fields() {
 	}
 
 	const fields = [];
-	(meta.fields || []).forEach((field) => {
+	let skip_section = false;
+	for (const field of meta.fields || []) {
+		// Exclude Comparative Statement and the cost breakdown that follows.
+		if (field && ["section_break_pbdp", "comparative_statement_section"].includes(field.fieldname)) {
+			break;
+		}
+
 		if (!field || !field.fieldtype) {
-			return;
+			continue;
+		}
+
+		if (field.fieldtype === "Section Break") {
+			skip_section = field.fieldname === "section_break_ypoj";
+		}
+		if (skip_section) {
+			continue;
 		}
 
 		fields.push({
@@ -97,7 +110,7 @@ function get_export_sales_order_fields() {
 			depends_on: field.depends_on,
 			description: field.description,
 		});
-	}); 
+	}
 
 	return fields;
 }

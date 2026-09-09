@@ -14,6 +14,19 @@ class ExportBudget(Document):
 
 	def on_submit(self):
 		self.create_multiple_budget()
+
+	def on_cancel(self):
+		self.cancel_linked_budgets()
+
+	def cancel_linked_budgets(self):
+		budget_names = frappe.get_all(
+			"Budget",
+			filters={"custom_export_budget": self.name, "docstatus": 1},
+			pluck="name",
+		)
+
+		for budget_name in budget_names:
+			frappe.get_doc("Budget", budget_name).cancel()
 	
 	def validate_budget_amount(self):
 		butget_amount = 0
@@ -28,6 +41,7 @@ class ExportBudget(Document):
 		if self.budget_accounts:
 			for row in self.budget_accounts:
 				new_doc = frappe.new_doc("Budget")
+				new_doc.custom_export_budget = self.name
 				new_doc.budget_against = self.budget_against
 				new_doc.company = self.company
 				new_doc.from_fiscal_year = self.from_fiscal_year
