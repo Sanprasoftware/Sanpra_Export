@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_bulk_edit": 1,
  "allow_rename": 1,
  "autoname": "field:sales_order_id",
  "creation": "2026-02-13 12:21:35.209842",
@@ -11,13 +12,13 @@
   "status",
   "column_break_swpz",
   "section_break_dzkm",
+  "consignee_name",
   "voucher_date",
-  "agent_name",
   "loading_port",
   "discharge_country",
   "discharge_port",
   "column_break_swwb",
-  "consignee_name",
+  "agent_name",
   "final_destination",
   "freight_payment",
   "insurance",
@@ -729,7 +730,7 @@
    "fieldname": "insurance",
    "fieldtype": "Select",
    "label": "Insurance",
-   "options": "On Buyer's Account\nOn Sellers Account"
+   "options": "\nOn Buyer's Account\nOn Sellers Account"
   },
   {
    "fieldname": "weight_for_payments",
@@ -755,7 +756,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-07 11:20:19.795485",
+ "modified": "2026-09-18 10:54:46.430917",
  "modified_by": "Administrator",
  "module": "Export Sanpra",
  "name": "Export Sales Order s",

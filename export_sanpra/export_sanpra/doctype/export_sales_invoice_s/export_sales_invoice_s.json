@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_bulk_edit": 1,
  "allow_rename": 1,
  "autoname": "field:sales_invoice_id",
  "creation": "2026-02-13 12:22:05.671118",
@@ -14,28 +15,33 @@
   "agent_name",
   "column_break_swpz",
   "section_break_ckfd",
-  "agent__broker_name",
-  "type_of_fcl",
-  "l_c_no_and_date",
-  "sales_commission",
-  "terms_of_delivery",
-  "column_break_wdwn",
-  "country_of_origin",
-  "insurance",
-  "loading_port",
-  "discharge_port",
-  "discharge_country",
-  "column_break_kuhb",
-  "buyer__if_other_than_consignee_",
-  "weight_for_payments",
   "consignee__name",
-  "freight_payments",
-  "column_break_xiwt",
   "notify_party_1",
   "notify_party_2",
+  "notify_party_3",
+  "notify_party_4",
+  "notify_party_5",
+  "column_break_wdwn",
+  "agent__broker_name",
+  "sales_commission",
+  "terms_of_delivery",
+  "insurance",
+  "shipment_date",
+  "no_of_fcl",
+  "column_break_kuhb",
+  "weight_for_payments",
+  "freight_payments",
   "final_destination",
   "place_of_reclip_by_pre_carriage",
-  "shipment_date",
+  "buyer__if_other_than_consignee_",
+  "cif_insurance",
+  "column_break_xiwt",
+  "discharge_port",
+  "discharge_country",
+  "country_of_origin",
+  "loading_port",
+  "type_of_fcl",
+  "l_c_no_and_date",
   "section_break_bxzx",
   "less_freight_insuranceusd",
   "other_deduction_usd",
@@ -50,7 +56,6 @@
   "export_duty_amount_",
   "section_break_ypoj",
   "contracted_qty",
-  "no_of_fcl",
   "stuffing_qty_fcl",
   "no_of_docs",
   "no_of_s_b",
@@ -66,7 +71,6 @@
   "thc_fcl_rupees",
   "bl_cost_docs_rupees",
   "column_break_gboe",
-  "cif_insurance",
   "ecgc_rate",
   "additional_document",
   "buyer_standard_document",
@@ -161,7 +165,7 @@
    "default": "India",
    "fieldname": "orgin",
    "fieldtype": "Link",
-   "label": "Orgin",
+   "label": "Country Of Origin",
    "options": "Territory"
   },
   {
@@ -292,7 +296,7 @@
   {
    "fieldname": "cif_insurance",
    "fieldtype": "Data",
-   "label": "CIF Insurance"
+   "label": "Insurance USD/Per Invoice"
   },
   {
    "fieldname": "ecgc_rate",
@@ -759,6 +763,7 @@
   {
    "fieldname": "country_of_origin",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Country Of Origin",
    "options": "Territory"
   },
@@ -775,6 +780,7 @@
   {
    "fieldname": "buyer__if_other_than_consignee_",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Buyer ( If Other Than Consignee )",
    "options": "Customer"
   },
@@ -853,7 +859,7 @@
   {
    "fieldname": "ocean_freight_usdfcl",
    "fieldtype": "Float",
-   "label": "Ocean Freight USD/FCl",
+   "label": "Ocean Freight USD/Per Invoice",
    "precision": "2"
   },
   {
@@ -893,12 +899,30 @@
    "fieldname": "export_duty_amount_",
    "fieldtype": "Float",
    "label": "Export Duty Amount @"
+  },
+  {
+   "fieldname": "notify_party_3",
+   "fieldtype": "Link",
+   "label": "Notify Party 3",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "notify_party_4",
+   "fieldtype": "Link",
+   "label": "Notify Party 4",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "notify_party_5",
+   "fieldtype": "Link",
+   "label": "Notify Party 5",
+   "options": "Customer"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-07 13:33:43.304494",
+ "modified": "2026-09-18 10:47:01.826928",
  "modified_by": "Administrator",
  "module": "Export Sanpra",
  "name": "Export Sales Invoice s",

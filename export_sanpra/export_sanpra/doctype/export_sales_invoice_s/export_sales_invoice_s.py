@@ -9,6 +9,7 @@ from frappe.utils import flt
 class ExportSalesInvoices(Document):
 	
 	def before_save(self):
+		self.less_freight_insuranceusd = flt(self.ocean_freight_usdfcl) + flt(self.cif_insurance)
 		self.calculate_fob()
 
 	def calculate_fob(self):

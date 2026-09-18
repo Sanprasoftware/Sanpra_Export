@@ -70,7 +70,15 @@ function open_export_sales_invoice_popup(frm, export_name) {
 				},
 			});
 
+			const update_less_freight = () => {
+				dialog.set_value("less_freight_insuranceusd",
+					flt(dialog.get_value("ocean_freight_usdfcl")) + flt(dialog.get_value("cif_insurance")));
+			};
+			["ocean_freight_usdfcl", "cif_insurance"].forEach((fieldname) => {
+				dialog.fields_dict[fieldname].df.onchange = update_less_freight;
+			});
 			dialog.set_values(doc);
+			update_less_freight();
 			set_dialog_read_only(dialog, ["sales_invoice_id"]);
 			dialog.show();
 		});
