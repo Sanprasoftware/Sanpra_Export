@@ -10,8 +10,8 @@
   "sizetype",
   "line_seal",
   "rfid_seal",
-  "no_of_pkgs",
   "50_kg_pp_bags",
+  "no_of_pkgs",
   "net_wtkg",
   "gross_wtkg"
  ],
@@ -47,21 +47,21 @@
    "fieldname": "50_kg_pp_bags",
    "fieldtype": "Float",
    "in_list_view": 1,
-   "label": "50 KG PP BAGS",
+   "label": "KIND OF PKG",
    "precision": "2"
   },
   {
    "fieldname": "net_wtkg",
    "fieldtype": "Float",
    "in_list_view": 1,
-   "label": "NET WT.(KG)",
+   "label": "NET WT",
    "precision": "2"
   },
   {
    "fieldname": "gross_wtkg",
    "fieldtype": "Float",
    "in_list_view": 1,
-   "label": "GROSS WT.(KG)",
+   "label": "GROSS WT",
    "precision": "2"
   },
   {
@@ -75,7 +75,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-09-18 10:57:00.011925",
+ "modified": "2026-09-21 17:02:25.928198",
  "modified_by": "Administrator",
  "module": "Export Sanpra",
  "name": "Container Slip",

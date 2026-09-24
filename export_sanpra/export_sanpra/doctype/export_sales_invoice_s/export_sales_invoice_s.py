@@ -7,36 +7,47 @@ from frappe.utils import flt
 
 
 class ExportSalesInvoices(Document):
-	
-	def before_save(self):
-		self.less_freight_insuranceusd = flt(self.ocean_freight_usdfcl) + flt(self.cif_insurance)
-		self.calculate_fob()
+	pass
+	# def before_save(self):
+	# 	self.less_freight_insuranceusd = flt(self.ocean_freight_usdfcl) + flt(self.cif_insurance)
+	# 	self.calculate_fob()
 
-	def calculate_fob(self):
-		si = frappe.get_value(
-			"Sales Invoice",
-			self.sales_invoice_id,
-			["base_total", "total", "conversion_rate"],
-			as_dict=True
-		)
+	# def calculate_fob(self):
+	# 	si = frappe.get_value(
+	# 		"Sales Invoice",
+	# 		self.sales_invoice_id,
+	# 		["base_total", "total", "conversion_rate"],
+	# 		as_dict=True
+	# 	)
 
-		if not si:
-			return
+	# 	if not si:
+	# 		return
 
-		less_freight = flt(self.less_freight_insuranceusd)
+	# 	##Change by Karpe sir 24/09/2026
+	# 	less_freight = flt(self.less_freight_insuranceusd)
+	# 	packing_charges = flt(self.packing_charges)
+	# 	other_deduction_usd = flt(self.other_deduction_usd)
 
-		self.fob_value_usd = flt(si.total) - less_freight
-		self.fob_invoice_value_inr = (
-			flt(si.base_total)
-			- (less_freight * flt(si.conversion_rate))
-		)
+	# 	self.fob_value_usd = flt(si.total) - less_freight - packing_charges - other_deduction_usd
+		
+	# 	# self.fob_invoice_value_inr = (
+	# 	# 	flt(si.base_total)
+	# 	# 	- (less_freight  * flt(si.conversion_rate))
+	# 	# )
 
-		frappe.db.set_value(
-			"Sales Invoice",
-			self.sales_invoice_id,
-			{
-				"custom_fob_value_usd": self.fob_value_usd,
-				"custom_fob_invoice_value_inr": self.fob_invoice_value_inr,
-			},
-			update_modified=False
-		)
+	# 	self.fob_invoice_value_inr = (
+	# 		flt(si.base_total)
+	# 		- (less_freight * flt(si.conversion_rate))
+	# 		- (packing_charges * flt(si.conversion_rate))
+	# 		- (other_deduction_usd * flt(si.conversion_rate))
+	# 	)
+
+	# 	frappe.db.set_value(
+	# 		"Sales Invoice",
+	# 		self.sales_invoice_id,
+	# 		{
+	# 			"custom_fob_value_usd": self.fob_value_usd,
+	# 			"custom_fob_invoice_value_inr": self.fob_invoice_value_inr,
+	# 		},
+	# 		update_modified=False
+	# 	)

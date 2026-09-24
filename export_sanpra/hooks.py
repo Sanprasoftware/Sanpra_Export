@@ -168,6 +168,8 @@ doc_events = {
         "on_trash": "export_sanpra.public.py.export_sales_order_s.delete_export_sales_order_s"
     },
     "Sales Invoice": {
+        "before_save": "export_sanpra.public.py.export_sales_invoice_s.calculate_container_slip_totals",
+        "before_submit": "export_sanpra.public.py.export_sales_invoice_s.validate_payment_weight_qty",
         "after_insert": "export_sanpra.public.py.export_sales_invoice_s.export_sales_invoice_s",
         "on_update": "export_sanpra.public.py.export_sales_invoice_s.export_sales_invoice_s",
         "on_cancel": "export_sanpra.public.py.export_sales_invoice_s.set_export_sales_invoice_status_cancelled",

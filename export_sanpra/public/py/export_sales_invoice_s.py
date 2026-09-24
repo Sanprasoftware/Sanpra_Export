@@ -1,5 +1,41 @@
 import frappe
-from frappe.utils import cint, cstr
+from frappe.utils import cint, cstr, flt
+
+
+def calculate_container_slip_totals(doc, method=None):
+    rows = doc.get("custom_container_slip") or []
+    doc.custom_total_no_of_pkgs = sum(flt(row.get("no_of_pkgs")) for row in rows)
+    doc.custom_total_net_wt = sum(flt(row.get("net_wtkg")) for row in rows)
+    doc.custom_total_gross_wt = sum(flt(row.get("gross_wtkg")) for row in rows)
+
+
+def validate_payment_weight_qty(doc, method=None):
+    if doc.custom_sales_invoice_type != "Global":
+        return
+
+    weight_for_payments = frappe.db.get_value(
+        "Export Sales Invoice s",
+        {"sales_invoice_id": doc.name},
+        "weight_for_payments",
+    )
+    if weight_for_payments is None:
+        frappe.throw("Export Sales Invoice s is missing for this Sales Invoice.")
+
+    weight_fields = {
+        "Net For Net": ("custom_total_net_wt", "Total Net Weight"),
+        "Gross For Net": ("custom_total_gross_wt", "Total Gross Weight"),
+    }
+    if weight_for_payments not in weight_fields:
+        return
+
+    fieldname, label = weight_fields[weight_for_payments]
+    quantity = flt(doc.total_qty, 6)
+    weight = flt(doc.get(fieldname), 6)
+    if quantity != weight:
+        frappe.throw(
+            f"Total Qty ({quantity}) must equal {label} ({weight}) "
+            f"when Weight For Payments is {weight_for_payments}."
+        )
 
 
 def set_export_sales_invoice_status_cancelled(doc, method=None):
