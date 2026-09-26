@@ -4,7 +4,9 @@ from frappe.utils import cint, cstr, flt
 
 def calculate_container_slip_totals(doc, method=None):
     rows = doc.get("custom_container_slip") or []
-    doc.custom_total_no_of_pkgs = sum(flt(row.get("no_of_pkgs")) for row in rows)
+    total_packages = sum(cint(row.get("no_of_pkgss")) for row in rows)
+    doc.custom_total_no_of_pkgsss = total_packages
+    doc.custom_total_no_of_pkgss = total_packages
     doc.custom_total_net_wt = sum(flt(row.get("net_wtkg")) for row in rows)
     doc.custom_total_gross_wt = sum(flt(row.get("gross_wtkg")) for row in rows)
 

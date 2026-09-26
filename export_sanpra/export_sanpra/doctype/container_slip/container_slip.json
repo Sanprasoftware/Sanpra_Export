@@ -8,10 +8,11 @@
  "field_order": [
   "container_no",
   "sizetype",
-  "line_seal",
+  "line_seals",
   "rfid_seal",
-  "50_kg_pp_bags",
-  "no_of_pkgs",
+  "kind_of_pkgs",
+  "no_of_pkgss",
+  "unit_of_mesure",
   "net_wtkg",
   "gross_wtkg"
  ],
@@ -29,13 +30,6 @@
    "label": "SIZE/TYPE"
   },
   {
-   "fieldname": "line_seal",
-   "fieldtype": "Float",
-   "in_list_view": 1,
-   "label": "LINE SEAL",
-   "precision": "2"
-  },
-  {
    "fieldname": "rfid_seal",
    "fieldtype": "Float",
    "hidden": 1,
@@ -44,38 +38,46 @@
    "precision": "2"
   },
   {
-   "fieldname": "50_kg_pp_bags",
-   "fieldtype": "Float",
-   "in_list_view": 1,
-   "label": "KIND OF PKG",
-   "precision": "2"
-  },
-  {
    "fieldname": "net_wtkg",
    "fieldtype": "Float",
    "in_list_view": 1,
    "label": "NET WT",
-   "precision": "2"
+   "precision": "4"
   },
   {
    "fieldname": "gross_wtkg",
    "fieldtype": "Float",
    "in_list_view": 1,
    "label": "GROSS WT",
-   "precision": "2"
+   "precision": "4"
   },
   {
-   "fieldname": "no_of_pkgs",
+   "fieldname": "kind_of_pkgs",
    "fieldtype": "Data",
-   "in_list_view": 1,
+   "label": "KIND OF PKGS"
+  },
+  {
+   "fieldname": "no_of_pkgss",
+   "fieldtype": "Int",
    "label": "NO OF PKGS"
+  },
+  {
+   "fieldname": "unit_of_mesure",
+   "fieldtype": "Link",
+   "label": "Unit OF MESURE",
+   "options": "UOM"
+  },
+  {
+   "fieldname": "line_seals",
+   "fieldtype": "Data",
+   "label": "LINE SEAL"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-09-21 17:02:25.928198",
+ "modified": "2026-09-26 16:01:13.073577",
  "modified_by": "Administrator",
  "module": "Export Sanpra",
  "name": "Container Slip",

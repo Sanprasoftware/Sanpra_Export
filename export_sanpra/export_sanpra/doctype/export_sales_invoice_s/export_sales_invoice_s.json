@@ -845,7 +845,8 @@
   },
   {
    "fieldname": "section_break_bxzx",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "hidden": 1
   },
   {
    "fieldname": "other_deduction_usd",
@@ -938,7 +939,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-24 15:47:49.349471",
+ "modified": "2026-09-26 15:16:27.403962",
  "modified_by": "Administrator",
  "module": "Export Sanpra",
  "name": "Export Sales Invoice s",
