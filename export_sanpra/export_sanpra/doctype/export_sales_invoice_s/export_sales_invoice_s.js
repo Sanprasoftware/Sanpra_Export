@@ -16,6 +16,7 @@ frappe.ui.form.on("Export Sales Invoice s", {
 	export_duty_rate_: update_export_duty_usd,
 	other_deduction_usd: update_other_deduction_inr,
 	fob_value_usd: update_amount_after_igst_duty,
+	igst_inr: update_amount_after_igst_duty,
 	fob_invoice_value_inr: update_derived_export_amounts,
 	duty_drawback_rate: update_duty_drawback_amount,
 	rodtepe_rate: update_rodtepe_amount,
@@ -70,14 +71,17 @@ async function update_fob_value_usd(frm) {
 	return update_amount_after_igst_duty(frm);
 }
 
-function update_amount_after_igst_duty(frm) {
-	return frm.set_value(
-		"amount_after_igst_duty",
-		flt(frm.doc.fob_value_usd)
-			+ flt(frm.doc.other_deduction_usd)
-			+ flt(frm.doc.packing_charges)
-			+ flt(frm.doc.less_freight_insuranceusd)
-	);
+async function update_amount_after_igst_duty(frm) {
+	let invoice_base_total = 0;
+	if (frm.doc.sales_invoice_id) {
+		const result = await frappe.db.get_value(
+			"Sales Invoice",
+			frm.doc.sales_invoice_id,
+			"base_total"
+		);
+		invoice_base_total = flt(result && result.message && result.message.base_total);
+	}
+	return frm.set_value("amount_after_igst_duty", flt(frm.doc.igst_inr) + invoice_base_total);
 }
 
 async function update_other_deduction_inr(frm) {

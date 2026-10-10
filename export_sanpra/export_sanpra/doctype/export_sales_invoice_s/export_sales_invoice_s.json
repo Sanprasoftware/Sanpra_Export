@@ -12,8 +12,8 @@
   "status",
   "orgin",
   "type_of_stuffing",
-  "agent_name",
   "column_break_swpz",
+  "supporting_manufacturer",
   "section_break_ckfd",
   "consignee__name",
   "notify_party_1",
@@ -22,7 +22,6 @@
   "notify_party_4",
   "notify_party_5",
   "column_break_wdwn",
-  "agent__broker_name",
   "sales_commission",
   "terms_of_delivery",
   "insurance",
@@ -43,12 +42,18 @@
   "l_c_no_and_date",
   "section_break_hdxw",
   "fob_invoice_value_inr",
+  "agent__broker_name",
+  "agent_name",
   "export_duty_",
+  "igst_assessable_value_usd",
   "export_duty_usd",
   "export_duty_amount_",
   "gross_weight",
+  "duty_drawback_amount",
+  "rodtepe_amount",
+  "export_duty_inr",
+  "other_deduction_usd",
   "igst",
-  "igst_assessable_value_usd",
   "section_break_bxzx",
   "ocean_freight_usdfcl",
   "duty_drawback_rate",
@@ -57,22 +62,22 @@
   "column_break_ykcq",
   "cif_insurance",
   "packing_charges_usd_invoice",
-  "duty_drawback_amount",
-  "rodtepe_amount",
-  "amount_after_igst_duty",
+  "duty_drawback_amount_copy",
+  "rodtepe_amount_copy",
+  "igst_assessable_value_inr",
   "column_break_gvsg",
   "less_freight_insuranceusd",
   "packing_charges",
-  "other_deduction_usd",
+  "other_deduction_usd_copy",
   "fob_value_usd",
-  "igst_assessable_value_inr",
+  "amount_after_igst_duty",
   "column_break_pkym",
   "less_freight_insuranceinr",
   "packing_charges_inr",
   "other_deduction_inr",
   "fob_value_inr",
   "igst_inr",
-  "export_duty_inr",
+  "export_duty_inr_copy",
   "section_break_ypoj",
   "contracted_qty",
   "stuffing_qty_fcl",
@@ -857,7 +862,8 @@
    "fieldname": "less_freight_insuranceusd",
    "fieldtype": "Float",
    "label": "Less Freight & Insurance(USD)",
-   "precision": "2"
+   "precision": "2",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_bxzx",
@@ -889,7 +895,8 @@
    "fieldname": "fob_value_usd",
    "fieldtype": "Float",
    "label": "FOB Value (USD)",
-   "precision": "2"
+   "precision": "2",
+   "read_only": 1
   },
   {
    "fieldname": "fob_invoice_value_inr",
@@ -902,7 +909,8 @@
    "fieldname": "igst_assessable_value_inr",
    "fieldtype": "Float",
    "label": "IGST Assessable Value (INR)",
-   "precision": "2"
+   "precision": "2",
+   "read_only": 1
   },
   {
    "fieldname": "igst_assessable_value_usd",
@@ -941,7 +949,8 @@
   {
    "fieldname": "packing_charges",
    "fieldtype": "Float",
-   "label": "Packing Charges (USD)"
+   "label": "Packing Charges (USD)",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_ykcq",
@@ -995,27 +1004,32 @@
   {
    "fieldname": "amount_after_igst_duty",
    "fieldtype": "Float",
-   "label": "Amount After IGST & Duty"
+   "label": "Amount After IGST & Duty (INR)",
+   "read_only": 1
   },
   {
    "fieldname": "less_freight_insuranceinr",
    "fieldtype": "Float",
-   "label": "Less Freight & Insurance(INR)"
+   "label": "Less Freight & Insurance(INR)",
+   "read_only": 1
   },
   {
    "fieldname": "packing_charges_inr",
    "fieldtype": "Float",
-   "label": "Packing Charges (INR)"
+   "label": "Packing Charges (INR)",
+   "read_only": 1
   },
   {
    "fieldname": "other_deduction_inr",
    "fieldtype": "Float",
-   "label": "Other Deduction (INR)/ Duty Cum Invoice"
+   "label": "Other Deduction (INR)/ Duty Cum Invoice",
+   "read_only": 1
   },
   {
    "fieldname": "fob_value_inr",
    "fieldtype": "Float",
-   "label": "FOB Value (INR)"
+   "label": "FOB Value (INR)",
+   "read_only": 1
   },
   {
    "fieldname": "export_duty_inr",
@@ -1025,18 +1039,47 @@
   {
    "fieldname": "igst_inr",
    "fieldtype": "Float",
-   "label": "IGST (INR)"
+   "label": "IGST (INR)",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_hdxw",
    "fieldtype": "Section Break",
    "hidden": 1
+  },
+  {
+   "fieldname": "duty_drawback_amount_copy",
+   "fieldtype": "Float",
+   "label": "Duty Drawback Amount"
+  },
+  {
+   "fieldname": "rodtepe_amount_copy",
+   "fieldtype": "Float",
+   "label": "Rodtepe Amount"
+  },
+  {
+   "fieldname": "export_duty_inr_copy",
+   "fieldtype": "Float",
+   "label": "Export Duty (INR)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "other_deduction_usd_copy",
+   "fieldtype": "Float",
+   "label": "Other Deduction (USD)/ Duty Cum Invoice",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "supporting_manufacturer",
+   "fieldtype": "Small Text",
+   "label": "Supporting Manufacturer"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-07 17:50:09.053142",
+ "modified": "2026-10-10 17:47:01.467438",
  "modified_by": "Administrator",
  "module": "Export Sanpra",
  "name": "Export Sales Invoice s",

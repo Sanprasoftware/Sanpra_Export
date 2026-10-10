@@ -143,13 +143,17 @@ function open_export_sales_invoice_popup(frm, export_name) {
 				await dialog.set_value("fob_value_inr", fob_value * conversion_rate);
 				await update_amount_after_igst_duty();
 			};
-			const update_amount_after_igst_duty = () => {
+			const update_amount_after_igst_duty = async () => {
+				const invoice_id = dialog.get_value("sales_invoice_id");
+				const result = invoice_id
+					? await frappe.db.get_value("Sales Invoice", invoice_id, "base_total")
+					: null;
+				const invoice_base_total = flt(
+					result && result.message && result.message.base_total
+				);
 				return dialog.set_value(
 					"amount_after_igst_duty",
-					flt(dialog.get_value("fob_value_usd"))
-						+ flt(dialog.get_value("other_deduction_usd"))
-						+ flt(dialog.get_value("packing_charges"))
-						+ flt(dialog.get_value("less_freight_insuranceusd"))
+					flt(dialog.get_value("igst_inr")) + invoice_base_total
 				);
 			};
 			const update_export_duty = async () => {
@@ -289,6 +293,12 @@ function get_export_sales_invoice_fields() {
 			hidden: field.hidden,
 			depends_on: field.depends_on,
 			description: field.description,
+			read_only: field.fieldname === "less_freight_insuranceusd" || field.read_only,
+			read_only: field.fieldname === "packing_charges" || field.read_only,
+			read_only: field.fieldname === "fob_value_usd" || field.read_only,
+			read_only: field.fieldname === "less_freight_insuranceinr" || field.read_only,
+			read_only: field.fieldname === "packing_charges_inr" || field.read_only,
+
 		});
 	}
 

@@ -1,0 +1,52 @@
+{
+ "add_total_row": 1,
+ "add_translate_data": 0,
+ "columns": [],
+ "creation": "2026-10-09 15:16:59.263968",
+ "disable_prepared_report_automation": 0,
+ "disabled": 1,
+ "docstatus": 0,
+ "doctype": "Report",
+ "doctype_to_sync": [],
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": null,
+ "modified": "2026-10-10 17:50:00.258162",
+ "modified_by": "Administrator",
+ "module": "Export Sanpra",
+ "name": "Trial Balance for Party Copy",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "GL Entry",
+ "report_name": "Trial Balance for Party Copy",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "Accounts Manager"
+  },
+  {
+   "role": "Auditor"
+  },
+  {
+   "role": "Accounts User"
+  },
+  {
+   "role": "Purchase User"
+  },
+  {
+   "role": "Accounts Assistant"
+  },
+  {
+   "role": "Domestic Purchase Manager"
+  },
+  {
+   "role": "Export Purchase Manager"
+  },
+  {
+   "role": "Manufacturing Manager"
+  }
+ ],
+ "snapshot_report": 0,
+ "timeout": 0
+}

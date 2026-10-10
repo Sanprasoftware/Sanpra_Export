@@ -26,10 +26,21 @@ class ExportSalesInvoices(Document):
 		)
 
 	def validate(self):
+		if not flt(self.duty_drawback_amount_copy):
+			self.duty_drawback_amount_copy = self.duty_drawback_amount
+		if not flt(self.rodtepe_amount_copy):
+			self.rodtepe_amount_copy = self.rodtepe_amount
+		if not flt(self.other_deduction_usd_copy):
+			self.other_deduction_usd_copy = self.other_deduction_usd
+		if not flt(self.export_duty_inr_copy):
+			self.export_duty_inr_copy = self.export_duty_inr
+
 		invoice_total = 0
+		invoice_base_total = 0
 		if self.sales_invoice_id:
 			invoice = frappe.get_doc("Sales Invoice", self.sales_invoice_id)
 			invoice_total = invoice.total or 0
+			invoice_base_total = flt(invoice.base_total)
 			self.igst_assessable_value_inr = flt(invoice.base_total)
 			self.less_freight_insuranceinr = (
 				flt(self.less_freight_insuranceusd) * flt(invoice.conversion_rate)
@@ -68,12 +79,7 @@ class ExportSalesInvoices(Document):
 		self.fob_value_inr = flt(self.fob_value_usd) * flt(
 			invoice.conversion_rate if self.sales_invoice_id else 0
 		)
-		self.amount_after_igst_duty = (
-			flt(self.fob_value_usd)
-			- flt(self.other_deduction_usd)
-			- flt(self.packing_charges)
-			- flt(self.less_freight_insuranceusd)
-		)
+		self.amount_after_igst_duty = flt(self.igst_inr) + invoice_base_total
 
 
 @frappe.whitelist()
