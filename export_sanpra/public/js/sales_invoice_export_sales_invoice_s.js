@@ -43,6 +43,12 @@ function open_export_sales_invoice_popup(frm, export_name) {
 
 	frappe.model.with_doctype("Export Sales Invoice s", () => {
 		frappe.db.get_doc("Export Sales Invoice s", export_name).then(async (doc) => {
+			const invoice_status = doc.sales_invoice_id
+				? await frappe.db.get_value("Sales Invoice", doc.sales_invoice_id, "docstatus")
+				: null;
+			const is_invoice_submitted = Number(
+				invoice_status && invoice_status.message && invoice_status.message.docstatus
+			) === 1;
 			if (doc.sales_invoice_id) {
 				const invoice = await frappe.db.get_doc("Sales Invoice", doc.sales_invoice_id);
 				const invoice_items = invoice.items || [];
@@ -73,10 +79,10 @@ function open_export_sales_invoice_popup(frm, export_name) {
 
 			const dialog = new frappe.ui.Dialog({
 				title: `Export Sales Invoice s: ${export_name}`,
-				fields: get_export_sales_invoice_fields(),
-				primary_action_label: "Save",
+				fields: get_export_sales_invoice_fields(is_invoice_submitted),
+				primary_action_label: is_invoice_submitted ? null : "Save",
 				async primary_action(values) {
-					if (!values) {
+					if (is_invoice_submitted || !values) {
 						return;
 					}
 
@@ -229,7 +235,14 @@ function open_export_sales_invoice_popup(frm, export_name) {
 			await update_other_deduction_inr();
 			await update_duty_drawback_amount();
 			await update_rodtepe_amount();
-			set_dialog_read_only(dialog, ["sales_invoice_id"]);
+			if (is_invoice_submitted) {
+				set_dialog_read_only(dialog, (dialog.fields || [])
+					.map((field) => field.df && field.df.fieldname)
+					.filter(Boolean));
+				dialog.get_primary_btn().hide();
+			} else {
+				set_dialog_read_only(dialog, ["sales_invoice_id"]);
+			}
 			dialog.show();
 		});
 	});
@@ -247,7 +260,7 @@ function get_weighted_item_rate(items, rate_field) {
 	) / total_amount;
 }
 
-function get_export_sales_invoice_fields() {
+function get_export_sales_invoice_fields(is_invoice_submitted = false) {
 	const meta = frappe.get_meta("Export Sales Invoice s");
 	if (!meta) {
 		return [];
@@ -293,11 +306,14 @@ function get_export_sales_invoice_fields() {
 			hidden: field.hidden,
 			depends_on: field.depends_on,
 			description: field.description,
-			read_only: field.fieldname === "less_freight_insuranceusd" || field.read_only,
-			read_only: field.fieldname === "packing_charges" || field.read_only,
-			read_only: field.fieldname === "fob_value_usd" || field.read_only,
-			read_only: field.fieldname === "less_freight_insuranceinr" || field.read_only,
-			read_only: field.fieldname === "packing_charges_inr" || field.read_only,
+			read_only: is_invoice_submitted || [
+				"sales_invoice_id",
+				"less_freight_insuranceusd",
+				"packing_charges",
+				"fob_value_usd",
+				"less_freight_insuranceinr",
+				"packing_charges_inr",
+			].includes(field.fieldname) || field.read_only,
 
 		});
 	}

@@ -172,12 +172,23 @@ doc_events = {
         "before_submit": "export_sanpra.public.py.export_sales_invoice_s.validate_payment_weight_qty",
         "after_insert": "export_sanpra.public.py.export_sales_invoice_s.export_sales_invoice_s",
         "on_update": "export_sanpra.public.py.export_sales_invoice_s.export_sales_invoice_s",
-        "on_cancel": "export_sanpra.public.py.export_sales_invoice_s.set_export_sales_invoice_status_cancelled",
-        "on_trash": "export_sanpra.public.py.export_sales_invoice_s.delete_export_sales_invoice_s"
+        "on_submit": "export_sanpra.public.py.sales_invoice.create_journal_entry_for_global_invoice",
+        "on_cancel": [
+            "export_sanpra.public.py.export_sales_invoice_s.set_export_sales_invoice_status_cancelled",
+            "export_sanpra.public.py.sales_invoice.cancel_linked_journal_entry",
+        ],
+        "on_trash": "export_sanpra.public.py.export_sales_invoice_s.delete_export_sales_invoice_s",
+    },
+    "Export Sales Invoice s": {
+        "after_insert": "export_sanpra.public.py.export_sales_invoice_s.sync_sales_invoice_fob_value",
+        "on_update": "export_sanpra.public.py.export_sales_invoice_s.sync_sales_invoice_fob_value",
     },
     "Purchase Invoice": {
         "before_save": "export_sanpra.public.py.purchase_invoice.validate_supplier_invoice_no"
-    }
+    },
+    "Journal Entry": {
+        "on_submit": "export_sanpra.public.py.sales_invoice.mark_sales_invoice_drawback_jv_created"
+    },
 }
 
 # Scheduled Tasks

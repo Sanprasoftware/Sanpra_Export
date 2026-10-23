@@ -1,0 +1,124 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-10-14 12:40:00.603870",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_cpxc",
+  "date",
+  "naming_series",
+  "cost_center",
+  "amended_from",
+  "column_break_fqzv",
+  "licence_no",
+  "licence_date",
+  "total_allocate_amt",
+  "stock_entry_id",
+  "section_break_gqhp",
+  "rodtep_invoice_allocation"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_cpxc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "RODTEP Script",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Posting Date"
+  },
+  {
+   "fieldname": "column_break_fqzv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_gqhp",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "rodtep_invoice_allocation",
+   "fieldtype": "Table",
+   "label": "RODTEP Invoice Allocation",
+   "options": "RODTEP Invoice Allocation Child"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Naming Series",
+   "options": "\nRS/.YY./.##"
+  },
+  {
+   "fieldname": "licence_no",
+   "fieldtype": "Data",
+   "label": "Licence / Script No"
+  },
+  {
+   "fieldname": "total_allocate_amt",
+   "fieldtype": "Float",
+   "label": "Script / Licence Value",
+   "read_only": 1
+  },
+  {
+   "fieldname": "stock_entry_id",
+   "fieldtype": "Link",
+   "label": "Stock Entry Id",
+   "options": "Stock Entry",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center"
+  },
+  {
+   "fieldname": "licence_date",
+   "fieldtype": "Date",
+   "label": "Licence Date"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-10-22 15:02:00.431842",
+ "modified_by": "Administrator",
+ "module": "Export Sanpra",
+ "name": "RODTEP Script",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

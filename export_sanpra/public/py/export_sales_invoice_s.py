@@ -46,6 +46,19 @@ def set_export_sales_invoice_status_cancelled(doc, method=None):
         frappe.db.set_value("Export Sales Invoice s", export_doc_name, "status", "Cancelled")
 
 
+def sync_sales_invoice_fob_value(doc, method=None):
+    if not doc.sales_invoice_id:
+        return
+
+    frappe.db.set_value(
+        "Sales Invoice",
+        doc.sales_invoice_id,
+        "custom_fob_invoice_value_inr",
+        doc.fob_value_inr,
+        update_modified=False,
+    )
+
+
 def is_source_cancelled(doc):
     return cint(doc.docstatus) == 2 or cstr(getattr(doc, "status", "")) == "Cancelled"
 

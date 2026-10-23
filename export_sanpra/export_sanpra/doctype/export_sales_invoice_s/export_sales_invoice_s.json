@@ -33,6 +33,7 @@
   "final_destination",
   "place_of_reclip_by_pre_carriage",
   "buyer__if_other_than_consignee_",
+  "let_date",
   "column_break_xiwt",
   "discharge_port",
   "discharge_country",
@@ -1074,12 +1075,17 @@
    "fieldname": "supporting_manufacturer",
    "fieldtype": "Small Text",
    "label": "Supporting Manufacturer"
+  },
+  {
+   "fieldname": "let_date",
+   "fieldtype": "Date",
+   "label": "LET Date"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-10 17:47:01.467438",
+ "modified": "2026-10-19 18:35:34.663562",
  "modified_by": "Administrator",
  "module": "Export Sanpra",
  "name": "Export Sales Invoice s",

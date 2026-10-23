@@ -1,0 +1,76 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "creation": "2026-10-14 12:44:01.149647",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sales_invoice",
+  "invoice_rodtep_amount",
+  "shipping_bill_no",
+  "column_break_cvki",
+  "invoice_amount",
+  "allocate",
+  "disallocate"
+ ],
+ "fields": [
+  {
+   "fieldname": "sales_invoice",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Sales Invoice",
+   "options": "Sales Invoice"
+  },
+  {
+   "fetch_from": "sales_invoice.total",
+   "fieldname": "invoice_amount",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Invoice Amount"
+  },
+  {
+   "fieldname": "column_break_cvki",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "allocate",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Allocate"
+  },
+  {
+   "fieldname": "disallocate",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Disallocate"
+  },
+  {
+   "fieldname": "invoice_rodtep_amount",
+   "fieldtype": "Float",
+   "label": "Invoice Rodtep Amount"
+  },
+  {
+   "fieldname": "shipping_bill_no",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Shipping Bill No"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-10-19 18:25:48.114834",
+ "modified_by": "Administrator",
+ "module": "Export Sanpra",
+ "name": "RODTEP Invoice Allocation Child",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
