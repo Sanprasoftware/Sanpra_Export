@@ -80,9 +80,9 @@ function open_export_sales_invoice_popup(frm, export_name) {
 			const dialog = new frappe.ui.Dialog({
 				title: `Export Sales Invoice s: ${export_name}`,
 				fields: get_export_sales_invoice_fields(is_invoice_submitted),
-				primary_action_label: is_invoice_submitted ? null : "Save",
+				primary_action_label: "Save",
 				async primary_action(values) {
-					if (is_invoice_submitted || !values) {
+					if (!values) {
 						return;
 					}
 
@@ -235,14 +235,7 @@ function open_export_sales_invoice_popup(frm, export_name) {
 			await update_other_deduction_inr();
 			await update_duty_drawback_amount();
 			await update_rodtepe_amount();
-			if (is_invoice_submitted) {
-				set_dialog_read_only(dialog, (dialog.fields || [])
-					.map((field) => field.df && field.df.fieldname)
-					.filter(Boolean));
-				dialog.get_primary_btn().hide();
-			} else {
-				set_dialog_read_only(dialog, ["sales_invoice_id"]);
-			}
+			set_dialog_read_only(dialog, ["sales_invoice_id"]);
 			dialog.show();
 		});
 	});
@@ -281,6 +274,7 @@ function get_export_sales_invoice_fields(is_invoice_submitted = false) {
 	}
 
 	let skip_section = false;
+	let read_only_section = false;
 	for (const fieldname of field_order) {
 		// Exclude Comparative Statement and the cost breakdown that follows.
 		if (["section_break_pbdp", "comparative_statement_section"].includes(fieldname)) {
@@ -293,6 +287,7 @@ function get_export_sales_invoice_fields(is_invoice_submitted = false) {
 		}
 		if (field.fieldtype === "Section Break") {
 			skip_section = field.fieldname === "section_break_ypoj";
+			read_only_section = field.fieldname === "section_break_bxzx";
 		}
 		if (skip_section) {
 			continue;
@@ -306,7 +301,7 @@ function get_export_sales_invoice_fields(is_invoice_submitted = false) {
 			hidden: field.hidden,
 			depends_on: field.depends_on,
 			description: field.description,
-			read_only: is_invoice_submitted || [
+			read_only: (is_invoice_submitted && read_only_section) || [
 				"sales_invoice_id",
 				"less_freight_insuranceusd",
 				"packing_charges",

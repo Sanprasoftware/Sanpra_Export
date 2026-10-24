@@ -41,6 +41,7 @@
   "loading_port",
   "type_of_fcl",
   "l_c_no_and_date",
+  "brc_no_and_date",
   "section_break_hdxw",
   "fob_invoice_value_inr",
   "agent__broker_name",
@@ -1080,12 +1081,17 @@
    "fieldname": "let_date",
    "fieldtype": "Date",
    "label": "LET Date"
+  },
+  {
+   "fieldname": "brc_no_and_date",
+   "fieldtype": "Data",
+   "label": "BRC NO and Date"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-19 18:35:34.663562",
+ "modified": "2026-10-24 16:41:30.380536",
  "modified_by": "Administrator",
  "module": "Export Sanpra",
  "name": "Export Sales Invoice s",
