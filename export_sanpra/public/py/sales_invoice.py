@@ -37,7 +37,7 @@ def create_journal_entry_for_global_invoice(doc, method=None):
         frappe.throw("Please set Debit Account and Credit Account in Sanpra Setting.")
 
     je.voucher_type = "Journal Entry"
-    je.naming_series = "K/JV.FY./.#"
+    je.naming_series = "E/DRW/JV.FY./.#"
     je.posting_date = doc.posting_date
     je.custom_cost_center = doc.cost_center
     je.custom_reference_id = doc.name
