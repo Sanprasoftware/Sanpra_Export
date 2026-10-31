@@ -8,12 +8,13 @@
  "engine": "InnoDB",
  "field_order": [
   "section_break_gb2u",
+  "booking_bank",
   "naming_series",
   "type",
   "from_date",
   "currency_rate",
-  "booking_id",
   "column_break_iqkh",
+  "booking_id",
   "posting_date",
   "to_date",
   "amount",
@@ -60,7 +61,7 @@
   {
    "fieldname": "booking_id",
    "fieldtype": "Data",
-   "label": "Booking Id (Bank)"
+   "label": "Booking Id"
   },
   {
    "default": "Today",
@@ -93,21 +94,27 @@
    "fieldname": "type",
    "fieldtype": "Select",
    "label": "Type",
-   "options": "\nTOM\nCash\nForward"
+   "options": "\nCash\nTOM\nForward"
   },
   {
    "default": "Today",
    "fieldname": "posting_date",
    "fieldtype": "Date",
    "label": "Posting Date"
+  },
+  {
+   "fieldname": "booking_bank",
+   "fieldtype": "Link",
+   "label": "Booking Bank",
+   "options": "Bank"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-22 16:40:16.169630",
- "modified_by": "Administrator",
+ "modified": "2026-10-31 17:49:25.896509",
+ "modified_by": "saifa@sanpra.co.in",
  "module": "Export Sanpra",
  "name": "Forward Booking",
  "naming_rule": "By \"Naming Series\" field",
