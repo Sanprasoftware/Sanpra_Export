@@ -14,6 +14,7 @@
   "type_of_stuffing",
   "column_break_swpz",
   "supporting_manufacturer",
+  "shipping_marks",
   "section_break_ckfd",
   "consignee__name",
   "notify_party_1",
@@ -1086,12 +1087,17 @@
    "fieldname": "brc_no_and_date",
    "fieldtype": "Data",
    "label": "BRC NO and Date"
+  },
+  {
+   "fieldname": "shipping_marks",
+   "fieldtype": "Small Text",
+   "label": "Shipping Marks"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-24 16:41:30.380536",
+ "modified": "2026-11-03 14:10:07.164608",
  "modified_by": "Administrator",
  "module": "Export Sanpra",
  "name": "Export Sales Invoice s",
