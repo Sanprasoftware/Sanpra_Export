@@ -8,18 +8,21 @@
  "engine": "InnoDB",
  "field_order": [
   "section_break_gb2u",
-  "booking_bank",
+  "posting_date",
   "naming_series",
   "type",
+  "currency_type",
+  "column_break_icdx",
+  "booking_bank",
   "from_date",
   "currency_rate",
+  "amended_from",
+  "remark",
   "column_break_iqkh",
   "booking_id",
-  "posting_date",
   "to_date",
   "amount",
-  "remark",
-  "amended_from",
+  "currency_amount",
   "section_break_xhmi",
   "items"
  ],
@@ -107,14 +110,29 @@
    "fieldtype": "Link",
    "label": "Booking Bank",
    "options": "Bank"
+  },
+  {
+   "fieldname": "currency_type",
+   "fieldtype": "Link",
+   "label": "Currency Type",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "column_break_icdx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "currency_amount",
+   "fieldtype": "Float",
+   "label": "Currency Amount"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-31 17:49:25.896509",
- "modified_by": "saifa@sanpra.co.in",
+ "modified": "2026-11-21 18:00:43.755660",
+ "modified_by": "Administrator",
  "module": "Export Sanpra",
  "name": "Forward Booking",
  "naming_rule": "By \"Naming Series\" field",

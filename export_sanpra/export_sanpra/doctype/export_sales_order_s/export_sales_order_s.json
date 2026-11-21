@@ -750,13 +750,14 @@
   {
    "fieldname": "voucher_date",
    "fieldtype": "Date",
+   "hidden": 1,
    "label": "Voucher Date"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-18 10:54:46.430917",
+ "modified": "2026-11-20 10:22:06.727114",
  "modified_by": "Administrator",
  "module": "Export Sanpra",
  "name": "Export Sales Order s",

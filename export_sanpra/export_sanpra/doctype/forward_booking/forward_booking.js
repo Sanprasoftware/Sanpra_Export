@@ -2,6 +2,18 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on("Forward Booking", {
+    refresh(frm) {
+        calculate_currency_amount(frm);
+    },
+
+    amount(frm) {
+        calculate_currency_amount(frm);
+    },
+
+    currency_rate(frm) {
+        calculate_currency_amount(frm);
+    },
+
     setup(frm) {
         frm.set_query("sales_order", "items", function() {
             return {
@@ -18,3 +30,9 @@ frappe.ui.form.on("Forward Booking", {
         });
     }
 });
+
+function calculate_currency_amount(frm) {
+    const amount = flt(frm.doc.amount);
+    const currency_rate = flt(frm.doc.currency_rate);
+    frm.set_value("currency_amount", amount * currency_rate);
+}
